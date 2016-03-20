@@ -23,6 +23,10 @@ module Workspace
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    I18n.enforce_available_locales = false
+    config.i18n.available_locales = [:en, :ru, :he]
+    I18n.default_locale = :en
     
     config.generators do |g|
          g.test_framework  :rspec

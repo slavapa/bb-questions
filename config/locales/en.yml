@@ -20,4 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  
+#START:layouts
+  layouts:
+  application:
+  about: "About"
+  home_page: "Home"
+  about_us: "About us"
+  contact_us: "Contact us"
+  log_id: "Log in"
+  footer_info: "New internet project - We build it together"

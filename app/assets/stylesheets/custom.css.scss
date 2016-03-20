@@ -1,0 +1,620 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "compass";
+@import "compass/css3";
+@import "compass/utilities";
+
+
+$gray-medium-light: #eaeaea;
+$blue:  #049cdb;
+$margin-between-fields: 0.625em;
+$search-fields-line-height: 1.7857142857142858em;
+$search-fields-height: 2.142857142857143em;
+
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+@mixin form-control-border{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+/* universal */
+
+
+
+html {
+  overflow-y: scroll;
+}
+
+.he{
+  direction: rtl !important; 
+  
+  .nav-tabs > li, .nav-pills > li, .navbar .nav > li{
+    float: right;
+  }
+  
+  .dropdown-menu > li > a{
+        text-align: right;
+  }
+}
+
+
+.inline_container{
+  display: inline  !important; 
+}
+
+.languages{
+  width: 8em;
+  height: 2.2em;
+  margin-top: 0.5em;
+}
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+/* typography */
+
+.module-header{
+  margin-bottom: 1em;
+}
+
+h1 {
+  text-align: left;
+}
+
+.he{
+  h1, h2, h3, h4, h5, h6{
+    text-align: right;
+  } 
+  
+  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, 
+  .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: right;
+  }
+}
+
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+// #logo.he{
+    // float:right;
+// }
+
+/* footer */
+
+footer {
+  text-align: center;
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $gray-medium-light;
+  color: $gray-light;
+  a {
+    color: $gray;
+    &:hover {
+      color: $gray-darker;
+    }
+  }
+  small {
+    // float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+
+
+/* sidebar */
+
+aside {
+  section {
+    padding: 10px 0;
+    border-top: 1px solid $gray-lighter;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 5px;
+  @include box_sizing;
+}
+
+input {
+  height: auto;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
+.stats {
+  overflow: auto;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $gray-lighter;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: $blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.person_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+  }
+}
+
+
+/* Users index */
+
+.people {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $gray-lighter;
+    &:last-child {
+      border-bottom: 1px solid $gray-lighter;
+    }
+  }
+}
+
+.btn_holder{
+  padding-left: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;  
+}
+
+btn-holder-last{
+  padding-right: 0;  
+}
+
+.td_left{
+  padding-left: 0.1em;
+}
+
+.td_right{
+  padding-right: 0.5em;
+}
+
+.td_holder{
+  padding-left: 0.2em;
+}
+
+.list_line_even {
+  background: #E5E5E5;
+}
+
+.list_line_odd {
+  background: transporant;
+}
+
+.header-title{
+  display:inline-block;
+  margin-right: 1em; 
+  width: 10em;
+}
+
+.he{  
+  .header_title{
+    margin-left: 5em;  
+  }  
+}
+
+.link_header{
+  a{
+    margin-left: 2em;    
+  }
+}
+
+.btn-small{
+  width:5em;
+}
+
+.display_none{
+	display:none;
+}
+
+.label_checkbox{
+	display: inline ;
+	vertical-align: text-bottom ;
+	margin-bottom: 0;	
+}
+
+.long-size-td{
+  width: 25em;
+}
+
+.long-long-size-td{
+  width: 35em;
+}
+
+.medium-size-td{
+  width: 10em;
+}
+
+.mm-size-td{
+  width: 15em;
+}
+
+.short-size-td{
+  width: 8em;
+}
+
+.ss-size-td{
+  width: 7em;
+}
+
+.btn-ss-size{
+  width: 7em !important;
+}
+
+
+.td-img-holder{
+  text-align: center;
+}
+
+
+.table-index{ 
+  thead{
+    tr{
+      background: #B4C0D0;
+    }
+  }
+  
+  .btn-small{
+    line-height: 15px;
+  } 
+  
+  td{
+    vertical-align: baseline; //default    
+  }
+  
+  tr{
+    height: 2.0em;
+  }
+  
+  .form_holder{
+    vertical-align: middle;    
+  }   
+}
+
+.module-link{
+  a{
+    color:-webkit-link;
+  }
+  
+  a:visited{
+    color:#3366FF    
+  }  
+}
+
+.arvut-hous{
+  input, input[type="password"], input[type="text"], input[type="date"], input[type="email"]{
+    width:238px;
+    height: 30px;  
+  }
+}
+
+//*** Serach QBE Section
+.arvut-house .search_field{  
+  width: 9.285714285714286em;
+  height: $search-fields-height;
+  padding: 1px 2px;
+  font-size: 13px;
+  line-height: $search-fields-line-height;
+} 
+
+.search_span{
+  min-height: 1px;
+  margin-left: $margin-between-fields;
+  float: none;
+  display: inline-block;
+  
+  input[type="submit"], input[type="button"]{
+    width: 5em;
+    margin-bottom: 0.7142857142857143em; 
+  }
+} 
+
+.long_search_select{
+  width: 10.714285714285714em; 
+}
+
+.long_search_input{
+   width: 14.285714285714286em;  
+}
+//*** Serach QBE Section
+
+.search_result{
+  color: #0064cd;
+  padding-left: 0.5em;
+  font-size: 15px;
+}
+
+.nav-tabs li:not(.tab-heading){ 
+  //http://compass-style.org/examples/compass/css3/border_radius/  
+  background-color: #E5E5E5;
+  @include border-top-right-radius(25px);
+  @include border-top-left-radius(1px);
+}
+
+.he .nav-tabs li{ 
+  @include border-top-right-radius(1px);
+  @include border-top-left-radius(25px);
+}
+
+.nav-tabs li a:hover{  
+  background-color: #CCCCFF;
+  @include border-top-right-radius(25px);
+  @include border-top-left-radius(1px);
+}
+
+.he .nav-tabs li a:hover{ 
+  @include border-top-right-radius(1px);
+  @include border-top-left-radius(25px);
+}
+
+.nav-tabs li.active a{  
+  //http://ie.microsoft.com/TestDrive/Graphics/CSSGradientBackgroundMaker/Default.html
+  // /* IE10 Consumer Preview */ 
+  // background-image: -ms-linear-gradient(top, #FFFFFF 0%, #00A3EF 100%);
+  // /* Mozilla Firefox */ 
+  // background-image: -moz-linear-gradient(top, #FFFFFF 0%, #00A3EF 100%);
+  // /* Opera */ 
+  // background-image: -o-linear-gradient(top, #FFFFFF 0%, #00A3EF 100%);
+  // /* Webkit (Safari/Chrome 10) */ 
+  // background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #00A3EF));
+  // /* Webkit (Chrome 11+) */ 
+  // background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #00A3EF 100%);
+  // /* W3C Markup, IE10 Release Preview */ 
+  // background-image: linear-gradient(to bottom, #FFFFFF 0%, #00A3EF 100%);  
+  
+  //http://www.colorzilla.com/gradient-editor/
+  // needs latest Compass, add '@import "compass"' to your scss
+  background-color: #00A3EF; // Old browsers
+  @include filter-gradient(#FFFFFF, #00A3EF, vertical); // IE6-9
+  @include background-image(linear-gradient(top, #FFFFFF 0%, #00A3EF 100%));
+  @include border-top-right-radius(25px);
+  @include border-top-left-radius(1px);
+}
+
+.he .nav-tabs li.active a{
+  @include border-top-right-radius(1px);
+  @include border-top-left-radius(25px);
+}
+
+.tab-heading{
+  background-color: none;
+  padding-top: 8px;
+  padding-left: 20px;
+}
+
+.he{
+  .tab-heading{
+    padding-left: 0px;
+    padding-right: 20px;
+  }
+}
+
+.arvut-house .extended_input{
+  width: 35.714285714285715em !important;   
+} 
+
+.medium_fz{
+    font-size: 18px;
+}
+
+:not(.he) holder_end{
+    margin-right: 10px;
+}
+
+.he .holder_end{
+  margin-left: 10px;
+}
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+.search-form {
+  margin: 1.4285714285714286em 0 1.4285714285714286em 0;
+}
+
+.search-form label {
+  padding-left: 5px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.he .search-form label {
+  padding-left: 0;
+  padding-right: 5px;
+}
+
+select,
+input[type="file"] {
+  height: 34px;
+  /* In IE7, the height of the select element cannot be changed by height, only font-size */
+  *margin-top: 4px;
+  /* For IE7, add top margin to align select with labels */
+  line-height: 34px;
+}
+
+.arvut-house label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.arvut-house{
+  fieldset{
+    @include form-control-border;
+  }
+}
+
+.arvut-house{
+  th{
+    text-align: center;
+  }
+}
+
+// General with for inputs 
+.arvut-house{
+   select, 
+   input[type='text'], input[type='password'], input[type='email'], 
+   input[type='date']{
+    width: 15em;
+  }
+}
+
+.edit_event, .edit_payment{
+  .field{
+    display: inline-block;
+    margin-left: $margin-between-fields;
+  }
+}
+
+.arvut-house {
+  input[type="date"].form-control,
+  input[type="time"].form-control,
+  input[type="datetime-local"].form-control,
+  input[type="month"].form-control {
+    line-height: normal;
+  }
+}
+
+div.row fieldset{
+  margin-bottom: 1.0714285714285714em;
+}
+
+
+input[type='checkbox']{
+  width: 1.7857142857142858em;
+  height: 1.7857142857142858em;
+  line-height: 1.7857142857142858em;
+}
+
+/* override /usr/local/rvm/gems/ruby-1.9.3-p551/gems/bootstrap-sass-2.3.2.2/vendor/assets/stylesheets/bootstrap/_dropdowns.scss */
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+  color: #fff;
+  background-color: #B8B8B8;
+}

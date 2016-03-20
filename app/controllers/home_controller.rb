@@ -4,10 +4,7 @@ class HomeController < ApplicationController
 
   def about
   end
-
-  def update
-  end
-
+  
   def contact_us
   end
 end
