@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   root 'home#default'
   
   get 'home/default'
@@ -7,6 +8,11 @@ Rails.application.routes.draw do
   
   match '/about',       to: 'home#about',           via: 'get'
   match '/contact_us',  to: 'home#contact_us',      via: 'get'    
+  
+  
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
     
 
   # The priority is based upon order of creation: first created -> highest priority.

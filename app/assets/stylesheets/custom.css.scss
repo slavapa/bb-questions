@@ -222,12 +222,6 @@ input {
   }
 }
 
-
-#session_remember_me {
-  width: auto;
-  margin-left: 0;
-}
-
 .stats {
   overflow: auto;
   a {
@@ -411,7 +405,7 @@ btn-holder-last{
 }
 
 //*** Serach QBE Section
-.arvut-house .search_field{  
+.bb-questions .search_field{  
   width: 9.285714285714286em;
   height: $search-fields-height;
   padding: 1px 2px;
@@ -511,7 +505,7 @@ btn-holder-last{
   }
 }
 
-.arvut-house .extended_input{
+.bb-questions .extended_input{
   width: 35.714285714285715em !important;   
 } 
 
@@ -557,25 +551,25 @@ input[type="file"] {
   line-height: 34px;
 }
 
-.arvut-house label {
+.bb-questions label {
   display: block;
   margin-bottom: 5px;
 }
 
-.arvut-house{
+.bb-questions{
   fieldset{
     @include form-control-border;
   }
 }
 
-.arvut-house{
+.bb-questions{
   th{
     text-align: center;
   }
 }
 
 // General with for inputs 
-.arvut-house{
+.bb-questions{
    select, 
    input[type='text'], input[type='password'], input[type='email'], 
    input[type='date']{
@@ -590,7 +584,7 @@ input[type="file"] {
   }
 }
 
-.arvut-house {
+.bb-questions {
   input[type="date"].form-control,
   input[type="time"].form-control,
   input[type="datetime-local"].form-control,
@@ -604,10 +598,11 @@ div.row fieldset{
 }
 
 
-input[type='checkbox']{
+.bb-questions input[type='checkbox']{
   width: 1.7857142857142858em;
   height: 1.7857142857142858em;
   line-height: 1.7857142857142858em;
+  margin-left: 0;
 }
 
 /* override /usr/local/rvm/gems/ruby-1.9.3-p551/gems/bootstrap-sass-2.3.2.2/vendor/assets/stylesheets/bootstrap/_dropdowns.scss */
@@ -617,4 +612,10 @@ input[type='checkbox']{
 .dropdown-submenu:focus > a {
   color: #fff;
   background-color: #B8B8B8;
+}
+
+.label_checkbox{
+  span{
+    margin-left: 2em;
+  }
 }

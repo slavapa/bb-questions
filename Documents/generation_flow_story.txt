@@ -1,1 +1,4 @@
 rails generate controller Home default about update contact_us
+rails generate controller Users new
+rails generate scaffold User name:string family_name:string email:string:index:unique password_digest:string remember_digest:string
+rails generate controller Sessions new

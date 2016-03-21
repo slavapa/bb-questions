@@ -23,8 +23,8 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'normalize-rails', '3.0.3'
 gem 'jquery-ui-rails', '5.0.5' #https://github.com/joliss/jquery-ui-rails
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+
+gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 
 # Use Unicorn as the app server
 # gem 'unicorn'

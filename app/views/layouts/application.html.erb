@@ -9,11 +9,13 @@
 </head>
 <body  class="bb-questions <%= I18n.locale %>">
   <%= render 'layouts/header' %>
-
-<%= yield %>
-
-  <%= render 'layouts/footer' %>
-  <%= debug(params) if Rails.env.development? %>
-  
+  <div class="container">
+    <div id="flash_section" class="flash_section">
+      <%= render 'shared/flash_messages' %>
+    </div>
+    <%= yield %>
+    <%= render 'layouts/footer' %>
+    <%= debug(params) if Rails.env.development? %>
+  </div>
 </body>
 </html>
