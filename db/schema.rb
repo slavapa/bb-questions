@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160321162929) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "users", force: :cascade do |t|
     t.string   "name",            limit: 60,                  null: false
     t.string   "family_name",     limit: 60
@@ -24,8 +27,8 @@ ActiveRecord::Schema.define(version: 20160321162929) do
     t.datetime "updated_at",                                  null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["family_name"], name: "index_users_on_family_name"
-  add_index "users", ["name"], name: "index_users_on_name"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["family_name"], name: "index_users_on_family_name", using: :btree
+  add_index "users", ["name"], name: "index_users_on_name", using: :btree
 
 end
