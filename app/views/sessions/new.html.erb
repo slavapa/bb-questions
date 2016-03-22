@@ -11,10 +11,11 @@
       <%= f.label :password, t('activerecord.attributes.person.password') %>
       <%= f.password_field :password, class: 'form-control' %>
       
-      <%= f.label :remember_me, class: "checkbox inline label_checkbox" do %>
+      <%= f.label :remember_me do %>
         <%= f.check_box :remember_me %>
-        <span>Remember me on this computer</span>
+        <span class='label_checkbox'>Remember me on this computer</span>
       <% end %>
+		      
       <br/>
       <%= f.submit t(:log_id), class: "btn btn-primary btn-small", id: 'btn_log_in' %>
     <% end %>
