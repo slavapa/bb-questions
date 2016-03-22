@@ -30,3 +30,53 @@ en:
   contact_us: "Contact us"
   log_id: "Log in"
   footer_info: "New internet project - We build it together"
+  name: 'Name'
+  search: 'Search'
+  clear: 'Clear'
+  new: 'New'
+  name: 'Name'
+  show: 'Show'
+  edit: 'Edit'
+  delete: 'Delete'
+  back: 'Back'
+  save: 'Save'
+  add: 'Add'
+  remove: 'Remove'
+  update: 'Update'
+  open: 'Open'
+  list: 'List'
+  will_paginate:
+    previous_label: 'Previous'
+    next_label: 'Next'
+  description: 'Description'
+  confirm: 'Are you sure?'
+
+
+#START:Active Records   
+  activerecord:
+    models:
+      user: 'User'
+    attributes:
+      user:
+        name: 'Name' 
+        family_name: 'Family Name'
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'Confirm Password'
+        admin: 'Admin'
+#END:Active Records
+
+
+#START:Users
+  users:
+    name: 'Users'
+    new:
+      new: 'New User'
+    index:
+      list: 'Users list'
+    edit:
+      editing: 'Editing User Profile'
+    searching:
+      name: 'User Name'
+      fam_name: 'Family Name'
+#END:Users

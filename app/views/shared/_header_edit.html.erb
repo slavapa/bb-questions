@@ -1,0 +1,45 @@
+<% provide(:title, title) %>
+<h1>
+	<div class="header-title"><%= title %></div>
+	<%= link_to t(:list), index_path, class:"link_header btn btn-default btn-small active", 
+			id: "list_link_header" %>
+	<% if admin_user? %>
+		<%= link_to t(:new), new_path, class: "link_header btn btn-default btn-small active", 
+				id: "new_link_header" %>
+				
+				
+		<% if (defined? delete_path) %>
+			<%= link_to t(:delete), delete_path, method: :delete, class: "link_header btn btn-default btn-small active", 
+			        id: "delete_link_header", data: { confirm: t(:confirm) } %>
+		<% else %>
+			<%= link_to t(:delete), cur_item, method: :delete, class: "link_header btn btn-default btn-small active", 
+			        id: "delete_link_header", data: { confirm: t(:confirm) } %>
+		<% end %>
+	
+	<% end %>
+	
+	<% if admin_user? || ((defined? isForceSave) && isForceSave == true) %>
+	<%= link_to t(:save), '#', class:"link_header btn btn-default btn-small active", 
+			id: "save_link_header"  %> 
+	<% end %>
+	
+	<% if (defined? search) %>		
+		<%= render partial: 'shared/search_header', 
+			locals:{ search: search} %>	 
+	<% end %>
+	
+</h1>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#save_link_header').click(function(){
+		<% if (defined? formClassName) %>
+        	$('<%= "form.#{formClassName}" %>').submit(); 
+		<% else %>	
+        	$('form').submit();
+		<% end %>
+    
+        return false;
+    });
+});
+</script>

@@ -47,7 +47,7 @@ module SessionsHelper
   end
   
   def admin_user?
-    signed_in? && current_user.admin?
+    logged_in? && current_user.admin?
   end
   
   def store_location
