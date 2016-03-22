@@ -29,7 +29,7 @@ gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'pg', '0.18.4'
+gem 'pg', '0.17.1'
 
 group :development, :test do
   gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -42,7 +42,7 @@ group :development do
 end
 
 group :production do
-  gem 'unicorn',        '4.8.3'
-  gem 'puma',           '2.11.1'
+  gem 'rails_12factor', '0.0.2'
+  gem 'puma',           '3.1.0'
 end
 
