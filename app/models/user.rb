@@ -11,9 +11,10 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }, length: { maximum: 255 }
   
-  validates :password, presence: true, length: { minimum: 6 }
-               
-  has_secure_password 
+  
+  has_secure_password validations: false
+  validates :password, length: { minimum: 6 }, if: lambda { |p| p.password.present? }
+  validates_confirmation_of :password, if: lambda { |p| p.password.present? }
   
   
   # Returns the hash digest of the given string.

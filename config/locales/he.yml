@@ -200,15 +200,6 @@ he:
     errors:
       <<: *errors
 
-
-
-
- 
- 
-   
- 
- 
- 
  
  #START:layout
   layouts:
@@ -219,3 +210,109 @@ he:
   contact_us: "צרו קשר"
   log_id: "כניסה"
   footer_info: "פרויקט אינטרנט חדש - אנחנו בונים אותו ביחד"
+  house_name: "בית ערבות"
+  help: "עזרה"
+  modules: "מודולים"
+  actions: "פעולות"
+  people_list: "רשימת אנשים"
+  person_new: 'אדם (חדש)'
+  account: 'חשבון'
+  sign_out: 'יציאה'
+  search: 'חפש'
+  clear: 'איפוס'
+  new: 'חדש'
+  name: 'שם'
+  show: 'הצג'
+  edit: 'ערוך'
+  delete: 'למחוק'
+  back: 'לחזור'
+  save: 'שמור'
+  add: 'הוסף'
+  remove: 'הסר'
+  update: 'עדכון'
+  open: 'לפתוח'
+  list: 'רשימה'
+  will_paginate:
+    previous_label: 'קודם'
+    next_label: 'הבא'
+  description: 'תיאור'
+  confirm: 'האם אתה בטוח?' 
+  item_updated: '%{name} עודכן/ה בהצלחה' 
+  item_created: '%{name} נוצר/ה בהצלחה' 
+  item_deleted: "%{name} נמחק בהצלחה" 
+  invalid_email_password: 'שילוב דואר אלקטרוני/סיסמא לא חוקי'  
+  not_authorized: 'אין לך הרשאה לבצע פעולה זו'  
+  cannot_delete_event_type: "%{name} לא נמחק מפני שנמצא בשימוש על ידי אירועים"  
+  presence: "%{name} הוא חובה"
+  existence: "%{name} לא קיים"  
+  male: 'זכר'
+  female: 'נקבה'
+  single: 'רווק/ה'
+  married: 'נשוי'
+  divorced: 'גרוש/ה'
+  widower: 'אלמן/נה'
+  private: 'פרטי'
+  commercial: 'מסחרי'
+  weak: 'חלש'
+  usual: 'רגיל'
+  advanced: 'מתקדם'
+  lang_code_val: "הוא לא חוקי. הערכים החוקיים צריכים להיות באותיות קטנות באנגלית עם 2 תווים"
+  tot_rows: 'סה"כ שורות'
+  page: 'עמוד'
+  sort_by: 'מיין לפי'
+  a-z: 'א-ת'
+  z-a: 'ת-א'
+  date_before: 'תאריך לפני'
+  date_after: 'תאריך לאחר'
+  asc: 'עולה'
+  desc: 'יורד'
+  "yes": 'כן'
+  "no": 'לא'
+  up: 'למעלה'
+  down: 'למטה'
+  main: 'ראשי'
+  profile: 'פרופיל'
+  general: 'כללי'
+  daily: 'יומי'
+  weekly: 'שבועי'
+  monthly: 'חודשי'
+  annually: 'שנתי'
+  validates_inclusion: "%{value} לא חוקית. הערכים חוקיים הם: %{valid_values}"
+  type: 'סוג'
+  download_as_excel: 'הורד אקסל'
+  report: 'דו"ח'
+  create: 'צור'
+  date_start: 'תאריך התחלה'
+  date_end: 'תאריך סיום'
+  log_id: "כניסה"
+  
+  
+ #START:Active Records 
+  activerecord:
+    models:
+      user: 'משתמש'
+    attributes:
+      user:
+        family_name: 'שם משפחה'
+        email: 'דוא"ל'
+        email_2: 'דוא"ל 2'
+        password: 'סיסמא'
+        password_confirmation: 'אימות סיסמא'
+        admin: 'Admin'
+#END:Active Records
+
+
+
+#START:Users
+  users:
+    name: 'משתמשים'
+    new:
+      new: 'משתמש חדש'
+    index:
+      list: 'רשימת משתמשים'
+    edit:
+      editing: 'עריכת פרופיל של משתמש'
+    searching:
+      name: 'שם משתמש'
+      fam_name: 'שם משפחה'
+#END:Users
