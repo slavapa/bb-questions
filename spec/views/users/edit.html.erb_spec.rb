@@ -5,9 +5,9 @@ RSpec.describe "users/edit", type: :view do
     @user = assign(:user, User.create!(
       :name => "MyString",
       :family_name => "MyString",
-      :email => "MyString",
-      :password_digest => "MyString",
-      :remember_digest => "MyString"
+      :email => "MyString@gmail.com",
+      :password => "MyString",
+      :password_confirmation => "MyString"
     ))
   end
 
@@ -22,9 +22,9 @@ RSpec.describe "users/edit", type: :view do
 
       assert_select "input#user_email[name=?]", "user[email]"
 
-      assert_select "input#user_password_digest[name=?]", "user[password_digest]"
+      assert_select "input#user_password[name=?]", "user[password]"
 
-      assert_select "input#user_remember_digest[name=?]", "user[remember_digest]"
+      assert_select "input#user_password_confirmation[name=?]", "user[password_confirmation]"
     end
   end
 end

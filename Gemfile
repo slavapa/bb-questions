@@ -41,6 +41,11 @@ group :development do
   gem 'spring'  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 end
 
+group :test do
+  gem 'capybara', '2.6.2'
+  gem 'factory_girl_rails', '4.6.0'
+end
+
 group :production do
   gem 'rails_12factor', '0.0.2'
   gem 'puma',           '3.1.0'

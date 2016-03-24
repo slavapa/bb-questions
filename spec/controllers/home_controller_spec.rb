@@ -16,13 +16,6 @@ RSpec.describe HomeController, type: :controller do
     end
   end
 
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe "GET #contact_us" do
     it "returns http success" do
       get :contact_us
