@@ -30,6 +30,7 @@ gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 # gem 'capistrano-rails', group: :development
 
 gem 'pg', '0.17.1'
+gem 'search_object', '1.1.0'  #http://rubygems.org/gems/search_object 
 
 group :development, :test do
   gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console

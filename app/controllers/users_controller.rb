@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @search = UserSearch.new filters: params[:f], page: params[:page]
+    @users = @search.results
   end
 
   # GET /users/1
