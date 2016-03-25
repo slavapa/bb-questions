@@ -285,6 +285,7 @@ he:
   date_start: 'תאריך התחלה'
   date_end: 'תאריך סיום'
   log_id: "כניסה"
+  please_sign_in: נא התחבר."
   
   
  #START:Active Records 

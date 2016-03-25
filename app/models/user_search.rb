@@ -3,7 +3,7 @@ class UserSearch
   include SearchObject.module(:model, :sorting, :will_paginate)
   scope { User.all }
   
-  per_page 30
+#   per_page 30
   
   sort_by :name, :family_name
   

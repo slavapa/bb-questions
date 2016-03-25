@@ -12,7 +12,7 @@ FactoryGirl.define do
       email "admin@gmail.com"
       password "xxxxxx"
       password_confirmation "xxxxxx"
-    admin true
+      admin true
     end
   end
 

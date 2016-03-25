@@ -3,16 +3,18 @@
 
 <%= render partial: 'user_search', 
 	locals:{ search: @search} %>	
-	
-<%= will_paginate %>
+
+<div class="paginate-cont-top">
+  <%= will_paginate %>
+</div>	
 
 <table class='table-bordered tabletable-hover table-index'>
   <thead>
     <tr>
       <th class='td_left '></th>
       <th class='td_holder medium-size-td  module-link'><%=  t(:name) %></th>
-      <th class='td_holder medium-size-td'><%= t('people.form.family_name')%></th>
-      <th class='td_holder mm-size-td'><%=  t('activerecord.attributes.person.email') %></th>
+      <th class='td_holder medium-size-td'><%= t('activerecord.attributes.user.family_name')%></th>
+      <th class='td_holder mm-size-td'><%=  t('activerecord.attributes.user.email') %></th>
     </tr>
   </thead>
 
@@ -21,4 +23,6 @@
   </tbody>
 </table>
 
-<%= will_paginate %>
+<div class="paginate-cont-bottom">
+  <%= will_paginate %>
+</div>

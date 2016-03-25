@@ -57,11 +57,20 @@ module SessionsHelper
   def log_in_user
     unless logged_in?
       store_location
-      redirect_to login_url, notice: "Please sign in."
+      redirect_to login_url, notice: t('please_sign_in')
     end
   end
   
   def admin_user
     redirect_to(root_url) unless current_user.admin?
+  end
+  
+  def redirect_back_or(default)
+    if logged_in?
+      redirect_to(session[:return_to] || users_path)
+    else
+      redirect_to(root_url)
+    end
+    session.delete(:return_to)
   end
 end

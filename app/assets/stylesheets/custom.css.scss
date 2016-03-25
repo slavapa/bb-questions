@@ -619,3 +619,25 @@ div.row fieldset{
     margin-left: 2em;
   }
 }
+
+.paginate-cont-top .pagination{
+  margin-top: 0;
+  margin-bottom: 0.625em;
+}
+
+.paginate-cont-bottom .pagination{
+  margin-top: 0.625em;
+  margin-bottom: 0;
+}
+
+.alert-alert {
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b;
+}
+
+.alert-notice {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+}
