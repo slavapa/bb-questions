@@ -325,3 +325,14 @@ en:
       name: 'User Name'
       fam_name: 'Family Name'
 #END:Users
+
+#START:Questions
+  questions:
+    name: 'Questions'
+    new:
+      new: 'New Question'
+    index:
+      list: 'Questions list'
+    edit:
+      editing: 'Editing Question'
+#END:Questions

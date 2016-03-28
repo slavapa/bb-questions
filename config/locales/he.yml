@@ -317,3 +317,15 @@ he:
       name: 'שם משתמש'
       fam_name: 'שם משפחה'
 #END:Users
+
+
+#START:Questions
+  questions:
+    name: 'שאלות'
+    new:
+      new: 'שאלה חדשה'
+    index:
+      list: 'רשימת שאלות'
+    edit:
+      editing: 'עריכת שאלה'
+#END:Questions

@@ -1,0 +1,57 @@
+<%= form_for(@question) do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :from %><br>
+    <%= f.text_field :from %>
+  </div>
+  <div class="field">
+    <%= f.label :ip %><br>
+    <%= f.text_field :ip %>
+  </div>
+  <div class="field">
+    <%= f.label :banned %><br>
+    <%= f.check_box :banned %>
+  </div>
+  <div class="field">
+    <%= f.label :selected %><br>
+    <%= f.check_box :selected %>
+  </div>
+  <div class="field">
+    <%= f.label :approved %><br>
+    <%= f.check_box :approved %>
+  </div>
+  <div class="field">
+    <%= f.label :sequence %><br>
+    <%= f.text_field :sequence %>
+  </div>
+  <div class="field">
+    <%= f.label :question %><br>
+    <%= f.text_area :question %>
+  </div>
+  <div class="field">
+    <%= f.label :translation %><br>
+    <%= f.text_area :translation %>
+  </div>
+  <div class="field">
+    <%= f.label :reformed %><br>
+    <%= f.text_area :reformed %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

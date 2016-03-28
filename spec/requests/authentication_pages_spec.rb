@@ -51,9 +51,10 @@ RSpec.describe "Authentication", type: :request do
       it { should_not have_selector('div.alert') }
       it { should_not have_selector('*.translation_missing') }
       it { should have_title(full_title('Users list')) }
-      it { should have_link('Sign out',    href: logout_path()) }
-      it { should_not have_link('Log in', href: login_path()) }
-      it { should have_link('Users list', href: users_path()) }
+      it { should have_link('Sign out',    href: logout_path) }
+      it { should_not have_link('Log in', href: login_path) }
+      it { should have_link('Users list', href: users_path) }
+       it { should have_link('Questions list', href: questions_path) }
             
       describe "after visiting another page" do
         before { click_link "Profile" }

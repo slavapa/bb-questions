@@ -372,3 +372,14 @@ ru:
       fam_name: 'Фамилия'
 #END:Users
 
+
+#START:Questions
+  questions:
+    name: 'Вопросы'
+    new:
+      new: 'Новый Вопрос'
+    index:
+      list: 'Список Вопросов'
+    edit:
+      editing: 'Изменение Вопроса'
+#END:Questions

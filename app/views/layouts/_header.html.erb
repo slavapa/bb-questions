@@ -17,9 +17,10 @@
           </ul>
 	      </li>
           <% if logged_in? %>
+            <li><%= link_to t('questions.index.list'), questions_path %></li>
           	<li><%= link_to t('users.index.list'), users_path %></li>
-          		<li><%= link_to t('profile'), edit_user_path(current_user) %></li>
-              <li><%= link_to t('sign_out'), logout_path, method: "delete" %></li>
+          	<li><%= link_to t('profile'), edit_user_path(current_user) %></li>
+            <li><%= link_to t('sign_out'), logout_path, method: "delete" %></li>
           <% else %>
             <li><%= link_to t(:log_id), login_path %></li>
           <% end %>

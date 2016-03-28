@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>From</th>
+      <th>Ip</th>
+      <th>Banned</th>
+      <th>Selected</th>
+      <th>Approved</th>
+      <th>Sequence</th>
+      <th>Question</th>
+      <th>Translation</th>
+      <th>Reformed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.name %></td>
+        <td><%= question.from %></td>
+        <td><%= question.ip %></td>
+        <td><%= question.banned %></td>
+        <td><%= question.selected %></td>
+        <td><%= question.approved %></td>
+        <td><%= question.sequence %></td>
+        <td><%= question.question %></td>
+        <td><%= question.translation %></td>
+        <td><%= question.reformed %></td>
+        <td><%= link_to 'Show', question %></td>
+        <td><%= link_to 'Edit', edit_question_path(question) %></td>
+        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Question', new_question_path %>
