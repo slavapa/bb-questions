@@ -4,7 +4,8 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @search = QuestionSearch.new filters: params[:f], page: params[:page]
+    @questions = @search.results
   end
 
   # GET /questions/1

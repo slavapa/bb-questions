@@ -301,6 +301,7 @@ en:
   activerecord:
     models:
       user: 'User'
+      question: 'Question'
     attributes:
       user:
         name: 'Name' 
@@ -309,6 +310,16 @@ en:
         password: 'Password'
         password_confirmation: 'Confirm Password'
         admin: 'Admin'
+      question:
+        from: 'From'
+        ip: 'IP'
+        banned: 'Banned'
+        selected: 'Selected'
+        approved: 'Approved'
+        sequence: 'Sequence'
+        question: 'Question'
+        translation: 'Translation'
+        reformed: 'Reformed'
 #END:Active Records
 
 

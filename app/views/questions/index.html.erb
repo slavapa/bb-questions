@@ -1,45 +1,32 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'shared/header_index', 
+	locals:{ title: t('.list'),  path: new_question_path, search: @search } %>
 
-<h1>Listing Questions</h1>
+<%= render partial: 'question_search', locals:{ search: @search} %>	
 
-<table>
+<div class="paginate-cont-top">
+  <%= will_paginate %>
+</div>		
+
+<table class='table-bordered table table-hover table-index'>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>From</th>
-      <th>Ip</th>
-      <th>Banned</th>
-      <th>Selected</th>
-      <th>Approved</th>
-      <th>Sequence</th>
-      <th>Question</th>
-      <th>Translation</th>
-      <th>Reformed</th>
-      <th colspan="3"></th>
+      <th class='td_left ss-size-td'><%= t('activerecord.attributes.question.approved')%></th>
+      <th class='td_holder ss-size-td'><%=  t('activerecord.attributes.question.banned') %></th>
+      <th class='td_holder medium-size-td  module-link'><%=  t(:name) %></th>
+      <th class='td_holder medium-size-td'><%= t('activerecord.attributes.question.from')%></th>
+      <th class='td_holder mm-size-td'><%=  t('activerecord.attributes.question.ip') %></th>
+      <th class='td_holder long-size-td'><%=  t('activerecord.attributes.question.question') %></th>
+      <th class='td_holder long-size-td'><%=  t('activerecord.attributes.question.translation') %></th>
+      <th class='td_holder long-size-td'><%=  t('activerecord.attributes.question.reformed') %></th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.name %></td>
-        <td><%= question.from %></td>
-        <td><%= question.ip %></td>
-        <td><%= question.banned %></td>
-        <td><%= question.selected %></td>
-        <td><%= question.approved %></td>
-        <td><%= question.sequence %></td>
-        <td><%= question.question %></td>
-        <td><%= question.translation %></td>
-        <td><%= question.reformed %></td>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody  class="tbody_events">
+  	<%= render @questions %>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Question', new_question_path %>
+<div class="paginate-cont-top">
+  <%= will_paginate %>
+</div>	

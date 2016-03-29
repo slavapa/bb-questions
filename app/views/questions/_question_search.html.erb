@@ -1,0 +1,15 @@
+<%= form_for search, as: :f, method: :get, url: questions_path, html: {id: 'search-form', class:'search-form'} do |search_form| %>
+  <% field_set_tag do %>
+  	<span class='search_span'>
+	  <%= search_form.label :name, t(:name) %>
+	  <%= search_form.search_field :name, class:'form-control search_field' %>  		
+  	</span>
+  	
+  	<span class='search_span'> 	  
+  	  <%= search_form.label :from, t('activerecord.attributes.question.from') %>
+	  <%= search_form.search_field :from, class:'form-control search_field' %> 		
+  	</span>
+  	
+  
+  <% end %>
+<% end %>
