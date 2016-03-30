@@ -36,14 +36,22 @@ RSpec.describe "Questions", type: :request do
       it { should have_link('search_link_header', text: 'Search') }
 
       it { should have_selector "form#search-form label[for='f_name']", text: "Name" }
+      it { should have_selector("form#search-form input#f_name")}
+      
+      it { should have_selector "form#search-form label[for='f_from']", text: "From" }
       it { should have_selector("form#search-form input#f_from")}
+      
+      it { should have_selector "form#search-form label[for='f_ip']", text: "IP" }
+      it { should have_selector("form#search-form input#f_ip")}
+      
+      it { should have_selector "form#search-form label[for='f_question']", text: "Question" }
+      it { should have_selector("form#search-form input#f_question")}
+        
+      it { should have_selector "form#search-form label[for='f_approved']", text: "Approved" }
+      it { should have_selector("form#search-form select#f_approved")}
 
-      # it { should have_selector "form#search-form label[for='f_family_name']", text: "Family Name" }
-      # it { should have_selector("form#search-form input#f_family_name")}
-
-      # it { should have_selector "form#search-form label[for='f_sort_params_for']", text: "Sort By" }
-      # it { should have_selector("form#search-form select#f_sort")}
-
+      it { should have_selector "form#search-form label[for='f_banned']", text: "Banned" }
+      it { should have_selector("form#search-form select#f_banned")}
       
       # describe "should list all Users" do
       #     before  do

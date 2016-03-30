@@ -411,7 +411,11 @@ btn-holder-last{
   padding: 1px 2px;
   font-size: 13px;
   line-height: $search-fields-line-height;
-} 
+}
+
+.bb-questions .search_field.long-size{
+  width: 25em;
+}
 
 .search_span{
   min-height: 1px;

@@ -4,6 +4,9 @@ class QuestionSearch
   scope { Question.all }
   
   # sort_by :name, :family_name
+  
+  option :approved 
+  option :banned 
  
   option :name do |scope, value|
     scope.where 'name LIKE ?', escape_search_term(value) if is_not_nil_empty?(value)
@@ -11,6 +14,17 @@ class QuestionSearch
   
   option :from do |scope, value|
     scope.where 'from LIKE ?', escape_search_term(value) if is_not_nil_empty?(value)
+  end
+  
+  option :ip do |scope, value|
+    scope.where 'ip LIKE ?', escape_search_term(value) if is_not_nil_empty?(value)
+  end
+   
+  option :question do |scope, value|
+    if is_not_nil_empty?(value) 
+      val = escape_search_term(value)
+      scope.where 'question LIKE ? OR translation LIKE ?', val, val
+    end
   end
   
   # def sort_params_arr

@@ -354,6 +354,16 @@ ru:
         password: 'Пароль'
         password_confirmation: 'Подтвердить пароль'
         admin: 'Админ'
+      question:
+        from: 'Откуда'
+        ip: 'IP'
+        banned: 'запрещенный'
+        selected: 'Выбранный'
+        approved: 'Одобренный'
+        sequence: 'Порядковый'
+        question: 'Вопрос'
+        translation: 'Перевод'
+        reformed: 'Преобразованный'
 #END:Active Records
 
 

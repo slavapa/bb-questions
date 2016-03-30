@@ -300,6 +300,16 @@ he:
         password: 'סיסמא'
         password_confirmation: 'אימות סיסמא'
         admin: 'Admin'
+      question:
+        from: 'מהיכן'
+        ip: 'IP'
+        banned: 'אסור'
+        selected: 'נבחר'
+        approved: 'אושר'
+        sequence: 'רצף'
+        question: 'שאלה'
+        translation: 'תירום'
+        reformed: 'מתוקן'
 #END:Active Records
 
 

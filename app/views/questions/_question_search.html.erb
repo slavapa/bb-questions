@@ -1,5 +1,18 @@
 <%= form_for search, as: :f, method: :get, url: questions_path, html: {id: 'search-form', class:'search-form'} do |search_form| %>
   <% field_set_tag do %>
+  
+  	<span class='search_span'>  												
+	  	<%= search_form.label :approved, t('activerecord.attributes.question.approved') %>
+	  	<%= search_form.select :approved, ApplicationHelper.yes_no_boolean_arr, {}, 
+	  		{ class: 'form-control search_field' } %>	
+  	</span>
+  	
+  	<span class='search_span'>  												
+	  	<%= search_form.label :banned, t('activerecord.attributes.question.banned') %>
+	  	<%= search_form.select :banned, ApplicationHelper.yes_no_boolean_arr, {}, 
+	  		{ class: 'form-control search_field' } %>	
+  	</span>
+	  	
   	<span class='search_span'>
 	  <%= search_form.label :name, t(:name) %>
 	  <%= search_form.search_field :name, class:'form-control search_field' %>  		
@@ -10,6 +23,15 @@
 	  <%= search_form.search_field :from, class:'form-control search_field' %> 		
   	</span>
   	
+  	<span class='search_span'> 	  
+  	  <%= search_form.label :ip, t('activerecord.attributes.question.ip') %>
+	  <%= search_form.search_field :ip, class:'form-control search_field' %> 		
+  	</span>
   
+  	<span class='search_span'> 	  
+  	  <%= search_form.label :question, t('activerecord.attributes.question.question') %>
+	  <%= search_form.search_field :question, class:'form-control search_field long-size' %> 		
+  	</span>
+  	
   <% end %>
 <% end %>
