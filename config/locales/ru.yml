@@ -340,6 +340,7 @@ ru:
   date_start: 'Дата старта'
   log_id: "Войти"
   please_sign_in: "Пожалуйста, войти в систему."
+  id: 'ID'
   
   
  #START:Active Records   

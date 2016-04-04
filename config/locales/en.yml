@@ -295,6 +295,7 @@ en:
   date_end: 'Date End'
   log_id: "Log in"
   please_sign_in: "Please sign in."
+  id: 'ID'
 
 
 #START:Active Records   

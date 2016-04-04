@@ -32,6 +32,23 @@
   	  <%= search_form.label :question, t('activerecord.attributes.question.question') %>
 	  <%= search_form.search_field :question, class:'form-control search_field long-size' %> 		
   	</span>
+  			
+  	<span class='search_span'>  												
+	  	<%= search_form.label :sort_params_for, "1 #{ t(:sort_by)}" %>
+	  	<%= search_form.select :sort, search.sort_params_arr,  {include_blank: false},
+	  		{ class: 'form-control search_field long_search_select' } %>		
+  	</span>
   	
+  	<span class='search_span'>  												
+	  	<%= search_form.label :sort_params_for, "2 #{ t(:sort_by)}" %>
+	  	<%= search_form.select :sort_2, search.sort_params_arr,  {include_blank: true},
+	  		{ class: 'form-control search_field long_search_select' } %>		
+  	</span>
+  	
+  	<span class='search_span'>  												
+	  	<%= search_form.label :sort_params_for, "3 #{ t(:sort_by)}" %>
+	  	<%= search_form.select :sort_3, search.sort_params_arr,  {include_blank: true},
+	  		{ class: 'form-control search_field long_search_select' } %>		
+  	</span>
   <% end %>
 <% end %>

@@ -3,7 +3,7 @@ class QuestionSearch
   include SearchObject.module(:model, :sorting, :will_paginate)
   scope { Question.all }
   
-  # sort_by :name, :family_name
+  sort_by 'id', 'name', 'from', 'ip', 'approved', 'banned'
   
   option :approved 
   option :banned 
@@ -27,15 +27,34 @@ class QuestionSearch
     end
   end
   
-  # def sort_params_arr
-  #   [
-  #     ["#{I18n.t(:name)} #{I18n.t('a-z')}", 'name asc'],  
-  #     ["#{I18n.t(:name)} #{I18n.t('z-a')}", 'name desc'],
-  #     ["#{I18n.t('activerecord.attributes.user.family_name')} #{I18n.t('a-z')}", 'family_name asc'],
-  #     ["#{I18n.t('activerecord.attributes.user.family_name')} #{I18n.t('z-a')}", 'family_name desc']     
-  #   ]     
-  # end 
+  def sort_params_arr
+    [
+      ["#{I18n.t(:id)} #{I18n.t('a-z')}", 'id asc'],  
+      ["#{I18n.t(:id)} #{I18n.t('z-a')}", 'id desc'], 
+      ["#{I18n.t(:name)} #{I18n.t('a-z')}", 'name asc'],  
+      ["#{I18n.t(:name)} #{I18n.t('z-a')}", 'name desc'], 
+      ["#{I18n.t('activerecord.attributes.question.from')} #{I18n.t('a-z')}", 'from asc'],  
+      ["#{I18n.t('activerecord.attributes.question.from')} #{I18n.t('z-a')}", 'from desc'], 
+      ["#{I18n.t('activerecord.attributes.question.ip')} #{I18n.t('a-z')}", 'ip asc'],  
+      ["#{I18n.t('activerecord.attributes.question.ip')} #{I18n.t('z-a')}", 'ip desc'], 
+      ["#{I18n.t('activerecord.attributes.question.approved')} #{I18n.t('a-z')}", 'approved asc'],  
+      ["#{I18n.t('activerecord.attributes.question.approved')} #{I18n.t('z-a')}", 'approved desc'] , 
+      ["#{I18n.t('activerecord.attributes.question.banned') } #{I18n.t('a-z')}", 'banned asc'],  
+      ["#{I18n.t('activerecord.attributes.question.banned') } #{I18n.t('z-a')}", 'banned desc']              
+    ]     
+  end 
   
+  option :sort_1 do |scope, value|
+    scope.order value
+  end
+  
+  option :sort_2 do |scope, value|
+     scope.order value
+  end
+  
+  option :sort_3 do |scope, value|
+     scope.order value
+  end
  
   
   private
