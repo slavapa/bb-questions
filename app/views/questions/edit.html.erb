@@ -1,6 +1,9 @@
-<h1>Editing Question</h1>
+<%= render partial: 'shared/header_edit', locals:{ title: t('.editing'), 
+	new_path: new_question_path, cur_item: @question,
+	index_path_name: t('questions.index.list'), index_path: questions_path, isForceNew: true
+}%>
+
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @question %> |
-<%= link_to 'Back', questions_path %>
+

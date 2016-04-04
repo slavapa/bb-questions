@@ -16,6 +16,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
+    @question.ip = request.remote_ip
   end
 
   # GET /questions/1/edit
@@ -26,10 +27,14 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
+    @question.ip = request.remote_ip
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        format.html do 
+          flash[:success] = t(:item_created, name: t('activerecord.models.question'))
+          redirect_to edit_question_path(@question)
+        end
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
@@ -70,6 +75,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:name, :from, :ip, :banned, :selected, :approved, :sequence, :question, :translation, :reformed)
+      params.require(:question).permit(:name, :from, :banned, :selected, :approved, :sequence, :question, :translation)
     end
 end

@@ -1,57 +1,52 @@
 <%= form_for(@question) do |f| %>
-  <% if @question.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
-
-      <ul>
-      <% @question.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :from %><br>
-    <%= f.text_field :from %>
-  </div>
-  <div class="field">
-    <%= f.label :ip %><br>
-    <%= f.text_field :ip %>
-  </div>
-  <div class="field">
-    <%= f.label :banned %><br>
-    <%= f.check_box :banned %>
-  </div>
-  <div class="field">
-    <%= f.label :selected %><br>
-    <%= f.check_box :selected %>
-  </div>
-  <div class="field">
-    <%= f.label :approved %><br>
-    <%= f.check_box :approved %>
-  </div>
-  <div class="field">
-    <%= f.label :sequence %><br>
-    <%= f.text_field :sequence %>
-  </div>
-  <div class="field">
-    <%= f.label :question %><br>
-    <%= f.text_area :question %>
-  </div>
-  <div class="field">
-    <%= f.label :translation %><br>
-    <%= f.text_area :translation %>
-  </div>
-  <div class="field">
-    <%= f.label :reformed %><br>
-    <%= f.text_area :reformed %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= render 'shared/error_messages', object: f.object %>
+	<div class="row">
+		<div class="col-md-3">
+			<%= field_set_tag do %>					
+			  	<%= f.label :name, t(:name) %>
+			  	<%= f.text_field :name, class:'form-control' %>
+			  	
+			  	<%= f.label :from %>
+			  	<%= f.text_field :from, class:'form-control' %>	
+			<% end %>
+		</div>
+		
+		<div class="col-md-3">
+			<%= field_set_tag do %>	
+		     	
+			  	<%= f.label :ip %>
+			  	<%= f.text_field :ip, :disabled => true, class:'form-control' %>
+		  	
+			  	<% if !@question.new_record? && admin_user? %>
+				    <%= f.label :approved do %>
+				      <%= f.check_box :approved %>
+				      <span class='label_checkbox'><%= t('.approved') %></span>
+				    <% end %>
+				    
+				    <%= f.label :banned do %>
+				      <%= f.check_box :banned %>
+				      <span class='label_checkbox'><%= t('.banned') %></span>
+				    <% end %>
+			  	<% end %>
+			<% end %>
+		</div>
+	</div>
+		
+	<div class="row">
+		<div class="col-md-12">
+			<%= field_set_tag do %>	
+		  	<%= f.label :question %>
+		  	<%= f.text_area :question, class:"text_area_address form-control", rows: "5" %>								
+			<% end %>
+		</div>
+	</div>
+		
+	<div class="row">
+		<div class="col-md-12">
+			<%= field_set_tag do %>	
+		  	<%= f.label :translation %>
+		  	<%= f.text_area :translation, class:"text_area_address form-control", rows: "5" %>								
+			<% end %>
+		</div>
+	</div>
 <% end %>

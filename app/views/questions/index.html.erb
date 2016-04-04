@@ -1,5 +1,5 @@
 <%= render partial: 'shared/header_index', 
-	locals:{ title: t('.list'),  path: new_question_path, search: @search } %>
+	locals:{ title: t('.list'),  path: new_question_path, search: @search, isForceNew: true } %>
 
 <%= render partial: 'question_search', locals:{ search: @search} %>	
 

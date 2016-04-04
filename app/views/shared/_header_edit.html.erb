@@ -3,10 +3,15 @@
 	<div class="header-title"><%= title %></div>
 	<%= link_to t(:list), index_path, class:"link_header btn btn-default btn-small active", 
 			id: "list_link_header" %>
-	<% if admin_user? %>
+				
+				
+	<% if  (admin_user?  || (defined? isForceNew)) %>		
 		<%= link_to t(:new), new_path, class: "link_header btn btn-default btn-small active", 
 				id: "new_link_header" %>
+	
+	<% end %>			
 				
+	<% if admin_user? %>
 				
 		<% if (defined? delete_path) %>
 			<%= link_to t(:delete), delete_path, method: :delete, class: "link_header btn btn-default btn-small active", 
