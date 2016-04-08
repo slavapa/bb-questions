@@ -6,6 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require_relative '../app/lib/async_events'
+
 module Workspace
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -32,5 +34,7 @@ module Workspace
          g.test_framework  :rspec
          g.integration_tool :rspec
     end
+    
+    config.middleware.use AsyncEvents
   end
 end

@@ -31,6 +31,8 @@ gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 
 gem 'pg', '0.17.1'
 gem 'search_object', '1.1.0'  #http://rubygems.org/gems/search_object 
+gem 'puma',           '3.1.0'
+gem 'faye-websocket', '0.10.3'
 
 group :development, :test do
   gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -49,6 +51,5 @@ end
 
 group :production do
   gem 'rails_12factor', '0.0.2'
-  gem 'puma',           '3.1.0'
 end
 
