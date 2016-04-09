@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
   
   resources :users
-  root 'home#default'
+  root 'questions#client_monitor'
   
   get 'home/default'
   get 'home/about'
