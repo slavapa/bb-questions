@@ -33,7 +33,7 @@ class AsyncEvents
     ws.on :message do |event|
       p [:message, event.data]
       data = JSON.parse event.data
-      message = Question.create name: data['author'], question: data['body'], from: data['fromv']
+      message = Question.create name: data['author'], from: data['fromv'], question: data['body']
       p data
     end
 

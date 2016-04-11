@@ -10,8 +10,7 @@ generateInterval = (attempts) ->
 
 ws = null
 createWebsocket = ->
-#  scheme = "ws://" # TODO: make "wss://" in production
- scheme = "wss://" # TODO: make "wss://" in production
+  scheme = "wss://" # TODO: make "wss://" in production
   uri = scheme + window.document.location.host + '/'
   ws = new WebSocket(uri)
 
@@ -20,7 +19,7 @@ createWebsocket = ->
 
   ws.onmessage = (message) ->
     data = JSON.parse(message.data)
-    $('#chat-text').prepend '<div class=\'panel panel-default\'><div class=\'panel-heading\'>' + data.name + ' from ' + data.from + '</div><div class=\'panel-body\'>' + data.question + '</div></div>'
+    $('#chat-text').prepend '<div class=\'panel panel-default\'><div class=\'panel-heading\'>' + data.name + ' From ' + data.from + '</div><div class=\'panel-body\'>' + data.question + '</div></div>'
     $('#chat-text').stop().animate { scrollTop: $('#chat-text')[0].scrollHeight }, 800
 
   ws.onclose = ->
@@ -36,8 +35,8 @@ $ ->
   $('#input-form').on 'submit', (event) ->
     event.preventDefault()
     author = $('#input-author')[0].value
-    body = $('#input-body')[0].value
     fromv = $('#input-fromv')[0].value
+    body = $('#input-body')[0].value
     ws.send JSON.stringify(
       author: author
       fromv: fromv
