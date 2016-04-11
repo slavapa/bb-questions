@@ -560,6 +560,10 @@ input[type="file"] {
   margin-bottom: 5px;
 }
 
+.bb-questions .monitor label {
+  display: inline;
+}
+
 .bb-questions{
   fieldset{
     @include form-control-border;
