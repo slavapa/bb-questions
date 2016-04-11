@@ -20,6 +20,9 @@
           <li><%= link_to t('questions.index.list'), questions_path %></li>
           <li><%= link_to 'Questions monitor', client_monitor_questions_path %></li>
           <% if logged_in? %>
+            <% if admin_user? %>
+              <li><%= link_to 'Moderator monitor', moderator_monitor_questions_path %></li>
+            <% end %>
           	<li><%= link_to t('users.index.list'), users_path %></li>
           	<li><%= link_to t('profile'), edit_user_path(current_user) %></li>
             <li><%= link_to t('sign_out'), logout_path, method: "delete" %></li>
