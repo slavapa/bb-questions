@@ -34,12 +34,12 @@ createWebsocket()
 $ ->
   $('#input-form').on 'submit', (event) ->
     event.preventDefault()
-    author = $('#input-author')[0].value
-    fromv = $('#input-fromv')[0].value
-    body = $('#input-body')[0].value
+    name = $('#name').val()
+    from = $('#from').val()
+    question = $('#question').val()
     ws.send JSON.stringify(
-      author: author
-      fromv: fromv
-      body: body)
-    $('#input-body')[0].value = ''
+      name: name
+      from: from
+      question: question)
+    $('#question').val('')
     return
