@@ -34,14 +34,18 @@
           				      <span class='label_checkbox'><%= t('.selected') %></span>
           				    <% end %>
           			  	<% end %>
+          			  	<button type="button" class="btn btn-primary btn-xs">Edit</button>
+          			  	<button class="btn btn-primary btn-xs" type="submit">Save</button>
+          			  	<button class="btn btn-primary btn-xs" type="button">Cancel</button>
           			<% end %>
+          			<div class="original"><%= question.question %></div>
           		</div>
           	</div>
           		
           	<div class="row">
           		<div class="col-md-12">
           			<%= field_set_tag do %>	
-          		  	<%= f.text_area :question, class:"text_area_address form-control", rows: "5" %>								
+          		  	<%= f.text_area :translation, class:"text_area_address form-control", rows: "5" %>								
           			<% end %>
           		</div>
           	</div>

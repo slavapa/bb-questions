@@ -649,3 +649,37 @@ div.row fieldset{
   border-color: #bce8f1;
   color: #31708f;
 }
+
+.btn-primary-outline {
+    color: #0275d8;
+    background-color: transparent;
+    background-image: none;
+    border-color: #0275d8;
+}
+
+.btn-primary-outline:hover {
+    color: #fff;
+    background-color: #0275d8;
+    border-color: #0275d8;
+}
+
+.btn-success-outline {
+    color: #5cb85c;
+    background-color: transparent;
+    background-image: none;
+    border-color: #5cb85c;
+}
+
+.btn-success-outline:hover {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #5cb85c;
+}
+
+.moderator .btn-sm {
+    padding: .20rem .75rem;
+    font-size: 0.87rem;
+    // line-height: 1.5;
+    // border-radius: .2rem;
+}
+
