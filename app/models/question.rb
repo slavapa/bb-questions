@@ -9,7 +9,10 @@ class Question < ActiveRecord::Base
   validates :question, presence: true
     # validates :ip, presence: true
     
-    
+   
+  scope :selected,  -> { where(selected: [true]) }  
+  scope :unselected,  -> { where(selected: [false, nil]) }
+  
   private
   def send_notify
     # Escape single quoted strings by inserting 2 of them

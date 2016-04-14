@@ -2,8 +2,8 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def moderator_monitor
-    @questions = Question.all.order(id: :desc)
-    @selected_questions = Question.all.order(id: :desc)
+    @questions = Question.unselected.all.order(id: :desc)
+    @selected_questions = Question.selected.all.order(id: :desc)
   end
   
   def client_monitor

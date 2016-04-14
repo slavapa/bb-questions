@@ -30,6 +30,16 @@
 			  	<% end %>
 			<% end %>
 		</div>
+			
+		<div class="col-md-3">
+			<%= field_set_tag do %>	
+		      
+			    <%= f.label :selected do %>
+			      <%= f.check_box :selected %>
+			      <span class='label_checkbox'><%= t('.selected') %></span>
+			    <% end %>
+			<% end %>
+		</div>
 	</div>
 		
 	<div class="row">
