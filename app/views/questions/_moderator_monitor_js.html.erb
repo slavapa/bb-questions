@@ -1,0 +1,14 @@
+<script type="text/javascript">
+    $( document ).ready(function() {
+        
+        $( "form.edit_question.approve" ).submit(function( event ) {
+            var trgElm = $(this).find("input.approve")
+            trgElm.click(); 
+            event.preventDefault();
+        });
+       
+    });
+    
+
+</script>
+

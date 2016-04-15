@@ -1,0 +1,83 @@
+<%- @question = question %> 
+    <div class="form-cont" id="form-cont-<%= @question.id %>">
+        
+      <%= form_for(question) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %> 		
+      <% end %>
+        <%= field_set_tag do %>	
+        	
+        	<div class="row">
+        		<div class="col-md-12">
+        		  <span><%= "#{question.name} From: #{question.from}. IP: #{question.ip}" %></span>
+        		</div>
+        	</div>
+        	
+        	<div class="row hidden">
+        		<div class="col-md-12">
+        		    <%= form_for(question) do |f| %>
+        			  	<% if !@question.new_record? && admin_user? %>
+        				    <%= f.label :approved do %>
+        				      <%= f.check_box :approved %>
+        				      <span class='label_checkbox'><%= t('.approved') %></span>
+        				    <% end %>
+        				    
+        				    <%= f.label :banned do %>
+        				      <%= f.check_box :banned %>
+        				      <span class='label_checkbox'><%= t('.banned') %></span>
+        				    <% end %>
+        				    <%= f.label :selected do %>
+        				      <%= f.check_box :selected %>
+        				      <span class='label_checkbox'><%= t('.selected') %></span>
+        				    <% end %>
+        			  	<% end %>
+    			  	<% end %>
+        		</div>
+        	</div>
+        	
+        	
+        	<div class="row">
+        		<div class="col-md-8">
+        		    
+        		    <%= form_for(question, remote: true, format: :json, html: {:class => "edit_question approve inline-block"}) do |f| %>
+    				    <%= f.check_box :approved , class: "hidden approve" %>
+    				    
+            		  	<% if question.approved?%>
+    			      	    <button class="btn btn-success btn-xs approve approved" type="submit">UnApprove</button>
+                        <% else %>
+    			      	    <button class="btn btn-primary btn-xs approve" type="submit">Approve</button>
+            		  	<% end %>
+        		  	
+    			  	<% end %>
+    			 
+    			  	
+    			  	
+        			<%= link_to t(:delete), question_path(@question), remote: true, method: :delete, class: "btn btn-danger btn-xs", 
+        			        data: { confirm: t(:confirm) } %>
+			        
+    			  	<button type="button" class="btn btn-info btn-xs">Edit</button>
+    			  	<button class="hidden btn btn-primary btn-xs" type="submit">Save</button>
+    			  	<button class="hidden btn btn-primary btn-xs" type="button">Cancel</button>
+        		</div>
+        		<div align="right" class="col-md-4">
+    			  	<button class="btn btn-danger btn-xs" type="button">Ban</button>
+    			  	<button class="btn btn-primary btn-xs" type="button">Select</button>
+        		</div>
+        	</div>
+        	
+        	<div class="row">
+        		<div class="col-md-12">
+        			<div class="original"><%= question.question %></div>
+        		</div>
+        	</div>
+        	
+        	<div class="row">
+        		<div class="col-md-12">
+        		  <%= form_for(question) do |f| %>
+        		      <%= f.text_area :translation, class:"hidden text_area_address form-control", rows: "3" %>
+        		  <% end %>				
+        		</div>
+        	</div>
+        	
+        <% end %>
+     
+    </div>

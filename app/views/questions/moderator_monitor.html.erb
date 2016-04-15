@@ -5,72 +5,11 @@
     <h1>Moderator Questions Monitor</h1>
   </div>
   
-  <div id="questions-cont" class="questions-cont col-md-6">
+  <div id="unselected-questions-cont" class="questions-cont unselected col-md-6">
     <h4>UnSelected</h4>
     <%- @questions.each do |question| %>
-    <%- @question = question %> 
-        <div class="form-cont">
-          <%= form_for(question) do |f| %>
-            <%= render 'shared/error_messages', object: f.object %>
-            <%= field_set_tag do %>	
-            	
-            	<div class="row">
-            		<div class="col-md-12">
-            		  <span><%= "#{question.name} From: #{question.from}. IP: #{question.ip}" %></span>
-            		</div>
-            	</div>
-            	
-            	<div class="row hidden">
-            		<div class="col-md-12">
-        			  	<% if !@question.new_record? && admin_user? %>
-        				    <%= f.label :approved do %>
-        				      <%= f.check_box :approved %>
-        				      <span class='label_checkbox'><%= t('.approved') %></span>
-        				    <% end %>
-        				    
-        				    <%= f.label :banned do %>
-        				      <%= f.check_box :banned %>
-        				      <span class='label_checkbox'><%= t('.banned') %></span>
-        				    <% end %>
-        				    <%= f.label :selected do %>
-        				      <%= f.check_box :selected %>
-        				      <span class='label_checkbox'><%= t('.selected') %></span>
-        				    <% end %>
-        			  	<% end %>
-            		</div>
-            	</div>
-            	
-            	
-            	<div class="row">
-            		<div class="col-md-8">
-        			  	<button class="btn btn-primary btn-xs" type="button">Approve</button>	
-        			  	<button class="btn btn-danger btn-xs" type="button">Delete</button>
-        			  	<button type="button" class="btn btn-info btn-xs">Edit</button>
-        			  	<button class="hidden btn btn-primary btn-xs" type="submit">Save</button>
-        			  	<button class="hidden btn btn-primary btn-xs" type="button">Cancel</button>
-            		</div>
-            		<div align="right" class="col-md-4">
-        			  	<button class="btn btn-danger btn-xs" type="button">Ban</button>
-        			  	<button class="btn btn-primary btn-xs" type="button">Select</button>
-            		</div>
-            	</div>
-            	
-            	<div class="row">
-            		<div class="col-md-12">
-            			<div class="original"><%= question.question %></div>
-            		</div>
-            	</div>
-            	
-            	<div class="row">
-            		<div class="col-md-12">
-            		  <%= f.text_area :translation, class:"hidden text_area_address form-control", rows: "3" %>				
-            		</div>
-            	</div>
-            	
-            <% end %>
-          		
-          <% end %>
-        </div>
+    	<%= render partial: "moderator_question_form", 
+  		  locals: {question: question} %>
     <%- end %>
   </div>
   
@@ -78,69 +17,13 @@
   <div id="selected-questions-cont" class="questions-cont selected col-md-6">
     <h4>Selected</h4>
     <%- @selected_questions.each do |question| %>
-    <%- @question = question %>  
-        <div class="form-cont">
-          <%= form_for(question) do |f| %>
-            <%= render 'shared/error_messages', object: f.object %>
-            <%= field_set_tag do %>	
-            	
-            	<div class="row">
-            		<div class="col-md-12">
-            		  <span><%= "#{question.name} From: #{question.from}. IP: #{question.ip}" %></span>
-            		</div>
-            	</div>
-            	
-            	<div class="row hidden">
-            		<div class="col-md-12">
-        			  	<% if !@question.new_record? && admin_user? %>
-        				    <%= f.label :approved do %>
-        				      <%= f.check_box :approved %>
-        				      <span class='label_checkbox'><%= t('.approved') %></span>
-        				    <% end %>
-        				    
-        				    <%= f.label :banned do %>
-        				      <%= f.check_box :banned %>
-        				      <span class='label_checkbox'><%= t('.banned') %></span>
-        				    <% end %>
-        				    <%= f.label :selected do %>
-        				      <%= f.check_box :selected %>
-        				      <span class='label_checkbox'><%= t('.selected') %></span>
-        				    <% end %>
-        			  	<% end %>
-            		</div>
-            	</div>
-            	
-            	
-            	<div class="row">
-            		<div class="col-md-8">
-        			  	<button class="btn btn-primary btn-xs" type="button">Approve</button>	
-        			  	<button class="btn btn-danger btn-xs" type="button">Delete</button>
-        			  	<button type="button" class="btn btn-info btn-xs">Edit</button>
-        			  	<button class="hidden btn btn-primary btn-xs" type="submit">Save</button>
-        			  	<button class="hidden btn btn-primary btn-xs" type="button">Cancel</button>
-            		</div>
-            		<div align="right" class="col-md-4">
-        			  	<button class="btn btn-danger btn-xs" type="button">Ban</button>
-        			  	<button class="btn btn-primary btn-xs" type="button">Select</button>
-            		</div>
-            	</div>
-            	
-            	<div class="row">
-            		<div class="col-md-12">
-            			<div class="original"><%= question.question %></div>
-            		</div>
-            	</div>
-            	
-            	<div class="row">
-            		<div class="col-md-12">
-            		  <%= f.text_area :translation, class:"hidden text_area_address form-control", rows: "3" %>				
-            		</div>
-            	</div>
-            	
-            <% end %>
-          		
-          <% end %>
-        </div>
+    
+    	<%= render partial: "moderator_question_form", 
+  		  locals: {question: question} %>
+  		  
     <%- end %>
   </div>
 </div>
+
+
+<%= render 'moderator_monitor_js' %>

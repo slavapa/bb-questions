@@ -683,3 +683,18 @@ div.row fieldset{
     // border-radius: .2rem;
 }
 
+.questions-cont.selected fieldset{
+  background-color: #C6FFB3;
+}
+
+.inline-block{
+  display: inline-block !important;
+}
+
+button.approved{
+  padding-left: 15px;
+  background-image: url("vicon.gif");
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+

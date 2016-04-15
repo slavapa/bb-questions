@@ -22,7 +22,7 @@ class AsyncEvents
   def call(env)
     return @app.call(env) unless Faye::WebSocket.websocket?(env)
 
-    setup_listener
+    #setup_listener
 
     ws = Faye::WebSocket.new(env, nil, { ping: KEEPALIVE_TIME })
     ws.on :open do |event|
