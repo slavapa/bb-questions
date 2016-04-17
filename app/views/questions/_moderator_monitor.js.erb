@@ -1,0 +1,33 @@
+<script type="text/javascript">
+    $( document ).ready(function() {
+        
+        $( "form.edit_question.approve" ).submit(function( event ) {
+            var trgForm = $(this);
+            var trgElm = trgForm.find("input.approve");
+            var trgBtn = trgForm.find("button.approve");
+            trgBtn.text("Submiting...");
+            trgElm.click(); 
+            event.preventDefault();
+            
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(json) {
+                    if(json.approved) {
+                        trgBtn.addClass("btn-info approved").removeClass("btn-primary").text("UnApprove");
+                    } 
+                    else {
+                        trgBtn.addClass("btn-primary").removeClass("btn-info approved").text("Approve");
+                    }
+                }
+            })
+            return false;
+        });
+       
+    });
+    
+
+</script>
+

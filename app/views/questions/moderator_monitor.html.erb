@@ -1,9 +1,6 @@
 <% provide(:title, "Moderator Monitor") %>
 
 <div class="moderator monitor row">
-  <div class="page-header">
-    <h1>Moderator Questions Monitor</h1>
-  </div>
   
   <div id="unselected-questions-cont" class="questions-cont unselected col-md-6">
     <h4>UnSelected</h4>
@@ -25,5 +22,5 @@
   </div>
 </div>
 
+<%= render(:partial => 'moderator_monitor.js', :formats => [:js] ) %>
 
-<%= render 'moderator_monitor_js' %>
