@@ -1,12 +1,45 @@
 <script type="text/javascript">
     $( document ).ready(function() {
         
+      
+        function flashInfoaAimation(flashInfo, text){
+            var html = '<div style="height: 21px;" class="inline-block" id="loading"><label>' + text + '</label><span>.</span><span>.</span><span>.</span></div>';
+            flashInfo.html(html).show();
+        }
+        
+        function flashInfoNotification(flashInfo, text){
+            flashInfo.html(text).show();
+            flashInfo.delay(500).fadeIn('normal', function() {
+                flashInfo.delay(2500).fadeOut(function(){
+                    flashInfo.text('');
+                });
+            });
+        }
+        		
+        function writeError(flashInfo, jqXHR, textStatus, errorThrown){
+            var shortMessage = jqXHR.status + ' error Thrown: ' + errorThrown;
+            flashInfo.html(shortMessage).prop('title', shortMessage);
+            
+            console.log('jqXHR:');
+            console.log(jqXHR);
+            console.log('textStatus:');
+            console.log(textStatus);
+            console.log('errorThrown:');
+            console.log(errorThrown);
+            
+            alert('An error occurred... Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information!');
+        }
+        
         $( "form.edit_question.approve" ).submit(function( event ) {
             var trgForm = $(this);
+            var trgParentCont = trgForm.closest(".form-cont");
             var trgElm = trgForm.find("input.approve");
             var trgBtn = trgForm.find("button.approve");
-            trgBtn.text("Submiting...");
+            var flashInfo = trgParentCont.find(".flash-info");
+            
             trgElm.click(); 
+            //flashInfo.text("Submiting...").show();
+            flashInfoaAimation(flashInfo, "Submiting");
             event.preventDefault();
             
             $.ajax({
@@ -17,13 +50,73 @@
                 success: function(json) {
                     if(json.approved) {
                         trgBtn.addClass("btn-info approved").removeClass("btn-primary").text("UnApprove");
+                        flashInfoNotification(flashInfo, "Approved");
                     } 
                     else {
                         trgBtn.addClass("btn-primary").removeClass("btn-info approved").text("Approve");
+                        flashInfoNotification(flashInfo, "Un Approved");
                     }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    writeError(flashInfo, jqXHR, textStatus, errorThrown);
                 }
             })
             return false;
+        });
+        
+        $( "form.form-translation" ).submit(function( event ) {
+            var trgForm = $(this);
+            var trgParentCont = trgForm.closest(".form-cont");
+            var flashInfo = trgParentCont.find(".flash-info");
+            
+            //flashInfo.html("Submiting...").show();
+            flashInfoaAimation(flashInfo, "Submiting");
+            event.preventDefault();
+            
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(json) {
+                    flashInfoNotification(flashInfo, "Saved");
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    writeError(flashInfo, jqXHR, textStatus, errorThrown);
+                }
+            })
+            return false;
+        });
+        
+        $( "button.edit" ).click(function() {
+            var curElm = $(this);
+            var trgParentCont = curElm.closest(".form-cont");
+            var questionId = trgParentCont.data( "question-id" );
+            var trgElm = trgParentCont.find(".question-translation");
+            trgElm.removeClass("hide").show();
+            
+            if (!trgElm.text().length){
+                trgElm.text(trgParentCont.find(".original-question").text());
+            }
+            
+            trgParentCont.find(".btn.save").removeClass("hide").show();
+            trgParentCont.find(".btn.cancel").removeClass("hide").show();
+            curElm.hide();
+        });
+       
+        $( "button.cancel" ).click(function() {
+            var curElm = $(this);
+            var trgParentCont = curElm.closest(".form-cont");
+            trgParentCont.find(".btn.edit").show();
+            trgParentCont.find(".btn.save").hide();
+            trgParentCont.find(".btn.cancel").hide();
+            trgParentCont.find(".question-translation").hide();
+        });
+        
+        $( "button.save" ).click(function() {
+            var curElm = $(this);
+            var trgParentCont = curElm.closest(".form-cont");
+            trgParentCont.find("form.form-translation").submit();
         });
        
     });

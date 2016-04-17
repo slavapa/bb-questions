@@ -1,5 +1,5 @@
 <%- @question = question %> 
-    <div class="form-cont" id="form-cont-<%= @question.id %>">
+    <div data-question-id="<%= @question.id %>" class="form-cont" id="form-cont-<%= @question.id %>">
         
       <%= form_for(question) do |f| %>
         <%= render 'shared/error_messages', object: f.object %> 		
@@ -14,7 +14,7 @@
         
         	
         	<div class="row">
-        		<div class="col-md-8">
+        		<div class="col-md-6">
         		    
         		    <%= form_for(question, remote: true, format: :json, html: {:class => "edit_question approve inline-block"}) do |f| %>
     				    <%= f.check_box :approved , class: "hidden approve" %>
@@ -32,11 +32,14 @@
         			<%= link_to t(:delete), question_path(@question), remote: true, method: :delete, class: "btn btn-danger btn-xs", 
         			        data: { confirm: t(:confirm) } %>
 			        
-    			  	<button type="button" class="btn btn-info btn-xs edit">Edit</button>
-    			  	<button class="hidden btn btn-primary btn-xs save" type="submit">Save</button>
-    			  	<button class="hidden btn btn-primary btn-xs cancel" type="button">Cancel</button>
+    			  	<button data-question-id="<%= @question.id %>" type="button" class="btn btn-info btn-xs edit">Edit</button>
+    			  	<button class="hide btn btn-primary btn-xs save" type="submit">Save</button>
+    			  	<button class="hide btn btn-primary btn-xs cancel" type="button">Cancel</button>
         		</div>
-        		<div align="right" class="col-md-4">
+        		<div align="right" class="col-md-3">
+    			  	<div class="inline-block flash-info-cont flash-info"></div>
+        		</div>
+        		<div align="right" class="col-md-3">
     			  	<button class="btn btn-danger btn-xs" type="button">Ban</button>
     			  	<button class="btn btn-primary btn-xs" type="button">Select</button>
         		</div>
@@ -44,14 +47,15 @@
         	
         	<div class="row">
         		<div class="col-md-12">
-        			<div class="original"><%= question.question %></div>
+        			<div class="original-question"><%= question.question %></div>
         		</div>
         	</div>
         	
         	<div class="row">
         		<div class="col-md-12">
-        		  <%= form_for(question) do |f| %>
-        		      <%= f.text_area :translation, class:"hidden text_area_address form-control", rows: "3" %>
+        		  <%= form_for(question, remote: true, format: :json, html: {:class => "edit_question form-translation"}) do |f| %>
+        		      <%= f.text_area :translation, class:"hide form-control question-translation", 
+        		      rows: "3", id: "translation-#{question.id}"  %>
         		  <% end %>				
         		</div>
         	</div>

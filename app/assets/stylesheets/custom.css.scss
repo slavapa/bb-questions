@@ -692,13 +692,64 @@ div.row fieldset{
 }
 
 button.approve{
-  width: 7.6923076923076925em;
+  width: 6.153846153846154em;
 }
 
 button.approved{
-  padding-left: 1.5384615384615385em;
-  background-image: url("vicon.gif");
-  background-repeat: no-repeat;
-  background-position: left center;
 }
 
+.flash-info{
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.flash-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.flash-info-cont{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 21px;
+}
+
+@-webkit-keyframes opacity {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+@-moz-keyframes opacity {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+#loading {
+    text-align: center;
+}
+
+#loading span {
+    -webkit-animation-name: opacity;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    
+    -moz-animation-name: opacity;
+    -moz-animation-duration: 1s;
+    -moz-animation-iteration-count: infinite;
+}
+
+#loading span:nth-child(1) {
+    -webkit-animation-delay: 100ms;
+    -moz-animation-delay: 100ms;
+}
+
+#loading span:nth-child(2) {
+    -webkit-animation-delay: 300ms;
+    -moz-animation-delay: 300ms;
+}
+
+#loading span:nth-child(3) {
+    -webkit-animation-delay: 500ms;
+    -moz-animation-delay: 500ms;
+}
