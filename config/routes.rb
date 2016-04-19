@@ -4,6 +4,10 @@ Rails.application.routes.draw do
       get 'moderator_monitor'
       get 'client_monitor'
     end
+    
+    member do
+      get 'moderator_question'
+    end
   end
   
   resources :users

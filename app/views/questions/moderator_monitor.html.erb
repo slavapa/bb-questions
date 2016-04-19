@@ -2,8 +2,8 @@
 
 <div class="moderator monitor row">
   
+  <h4>UnSelected</h4>
   <div id="unselected-questions-cont" class="questions-cont unselected col-md-6">
-    <h4>UnSelected</h4>
     <%- @questions.each do |question| %>
     	<%= render partial: "moderator_question_form", 
   		  locals: {question: question} %>
@@ -11,8 +11,8 @@
   </div>
   
   
+  <h4>Selected</h4>
   <div id="selected-questions-cont" class="questions-cont selected col-md-6">
-    <h4>Selected</h4>
     <%- @selected_questions.each do |question| %>
     
     	<%= render partial: "moderator_question_form", 

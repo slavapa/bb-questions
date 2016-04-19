@@ -1,9 +1,16 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update, :destroy, :moderator_question]
 
   def moderator_monitor
     @questions = Question.unselected.all.order(id: :desc)
     @selected_questions = Question.selected.all.order(id: :desc)
+  end
+  
+  def moderator_question
+    respond_to do |format|
+      format.html { render partial: "moderator_question_form", 
+  		  locals: {question: @question}  }
+    end
   end
   
   def client_monitor

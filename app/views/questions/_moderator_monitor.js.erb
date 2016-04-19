@@ -1,4 +1,6 @@
 <script type="text/javascript">
+    ModeratorLibrary = {};
+    
     $( document ).ready(function() {
         
       
@@ -18,7 +20,8 @@
         		
         function writeError(flashInfo, jqXHR, textStatus, errorThrown){
             var shortMessage = jqXHR.status + ' error Thrown: ' + errorThrown;
-            flashInfo.html(shortMessage).prop('title', shortMessage);
+            
+            if (flashInfo) flashInfo.html(shortMessage).prop('title', shortMessage);
             
             console.log('jqXHR:');
             console.log(jqXHR);
@@ -122,5 +125,16 @@
     });
     
 
+    (function (ModeratorLibrary) {
+        
+        ModeratorLibrary.onMessage = function (data) {
+            $.ajax({
+                url: "/questions/" + data.id + "/moderator_question"
+            }).done(function(response) {
+                $("#unselected-questions-cont").prepend(response);
+            });
+        };
+       
+    }(ModeratorLibrary = ModeratorLibrary || {}));
 </script>
 
