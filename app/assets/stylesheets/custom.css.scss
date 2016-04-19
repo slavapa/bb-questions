@@ -684,7 +684,7 @@ div.row fieldset{
 }
 
 .questions-cont.selected fieldset{
-  background-color: #E5FFEC;
+  background-color: #E9ECF4;
 }
 
 .inline-block{
@@ -752,4 +752,9 @@ button.approved{
 #loading span:nth-child(3) {
     -webkit-animation-delay: 500ms;
     -moz-animation-delay: 500ms;
+}
+
+.org-translation {
+    margin-top: 10px;
+    background-color: #E5E6EA;
 }

@@ -51,6 +51,14 @@
         		</div>
         	</div>
         	
+        	<% unless question.translation.blank? %>
+          	<div class="row">
+          		<div class="col-md-12">
+          		  <div class="org-translation"><%= question.translation %></div>
+          		</div>
+          	</div>
+        	<% end %>
+        	
         	<div class="row">
         		<div class="col-md-12">
         		  <%= form_for(question, remote: true, format: :json, html: {:class => "edit_question form-translation"}) do |f| %>
