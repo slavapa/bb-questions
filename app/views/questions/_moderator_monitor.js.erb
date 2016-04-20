@@ -91,36 +91,11 @@
             return false;
         });
         
-        $( "button.edit" ).click(function() {
-            var curElm = $(this);
-            var trgParentCont = curElm.closest(".form-cont");
-            var questionId = trgParentCont.data( "question-id" );
-            var trgElm = trgParentCont.find(".question-translation");
-            trgElm.removeClass("hide").show();
-            
-            if (!trgElm.text().length){
-                trgElm.text(trgParentCont.find(".original-question").text());
-            }
-            
-            trgParentCont.find(".btn.save").removeClass("hide").show();
-            trgParentCont.find(".btn.cancel").removeClass("hide").show();
-            curElm.hide();
-        });
+        $("button.edit").click(ModeratorLibrary.onBtnEdit);
        
-        $( "button.cancel" ).click(function() {
-            var curElm = $(this);
-            var trgParentCont = curElm.closest(".form-cont");
-            trgParentCont.find(".btn.edit").show();
-            trgParentCont.find(".btn.save").hide();
-            trgParentCont.find(".btn.cancel").hide();
-            trgParentCont.find(".question-translation").hide();
-        });
+        $("button.cancel").click(ModeratorLibrary.questionBtnCancel);
         
-        $( "button.save" ).click(function() {
-            var curElm = $(this);
-            var trgParentCont = curElm.closest(".form-cont");
-            trgParentCont.find("form.form-translation").submit();
-        });
+        $("button.save").click(ModeratorLibrary.onBtnSave);
        
     });
     
@@ -131,9 +106,50 @@
             $.ajax({
                 url: "/questions/" + data.id + "/moderator_question"
             }).done(function(response) {
-                $("#unselected-questions-cont").prepend(response);
+                var htmlElement = $.parseHTML(response);
+                $(htmlElement).addClass("new_question nq-added");
+                $("#unselected-questions-cont").prepend(htmlElement);
+                // htmlElement.toggleClass( "new_question", 1000, "easeOutSine",  function(){
+                //     alert(1);
+                // });
+                
+                
             });
         };
+        
+        
+        ModeratorLibrary.onBtnEdit = function () {
+            var curElm = $(this);
+            var trgParentCont = curElm.closest(".form-cont");
+            var questionId = trgParentCont.data("question-id");
+            var trgElm = trgParentCont.find(".question-translation");
+            trgElm.removeClass("hide").show();
+    
+            if (!trgElm.text().length) {
+                trgElm.text(trgParentCont.find(".original-question").text());
+            }
+    
+            trgParentCont.find(".btn.save").removeClass("hide").show();
+            trgParentCont.find(".btn.cancel").removeClass("hide").show();
+            curElm.hide();
+        }
+
+        
+        ModeratorLibrary.questionBtnCancel = function () {
+            var curElm = $(this);
+            var trgParentCont = curElm.closest(".form-cont");
+            trgParentCont.find(".btn.edit").show();
+            trgParentCont.find(".btn.save").hide();
+            trgParentCont.find(".btn.cancel").hide();
+            trgParentCont.find(".question-translation").hide();
+        }
+        
+        ModeratorLibrary.onBtnSave = function () {
+            var curElm = $(this);
+            var trgParentCont = curElm.closest(".form-cont");
+            trgParentCont.find("form.form-translation").submit();
+        }
+       
        
     }(ModeratorLibrary = ModeratorLibrary || {}));
 </script>
