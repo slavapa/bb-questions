@@ -71,12 +71,13 @@
                 url: "/questions/" + data.id + "/moderator_question"
             }).done(function(response) {
                 var htmlElement = $.parseHTML(response);
-                $(htmlElement).addClass("new_question nq-added");
-                $("#unselected-questions-cont").prepend(htmlElement);
-                ModeratorLibrary.initUI($(htmlElement));
-                // htmlElement.toggleClass( "new_question", 1000, "easeOutSine",  function(){
-                //     alert(1);
-                // });
+                var newQuestion = $(htmlElement);
+                newQuestion.addClass("nq-added");
+                $("#unselected-questions-cont").prepend(newQuestion);
+                ModeratorLibrary.initUI($(newQuestion));
+                newQuestion.toggleClass( "new_question", 1000, "easeOutSine",  function(){
+                    newQuestion.toggleClass( "new_question", 3000, "easeOutSine");
+                });
                 
                 
             });
