@@ -3,7 +3,7 @@
 
     (function (ModeratorLibrary) {
         
-        function flashInfoaAimation(flashInfo, text){
+        function flashInfoAimation(flashInfo, text){
             var html = '<div style="height: 21px;" class="inline-block" id="loading"><label>' + text + '</label><span>.</span><span>.</span><span>.</span></div>';
             flashInfo.html(html).show();
         }
@@ -25,7 +25,7 @@
             var flashInfo = trgParentCont.find(".flash-info");
     
             trgElm.click();
-            flashInfoaAimation(flashInfo, "Submiting");
+            flashInfoAimation(flashInfo, "Submiting");
             event.preventDefault();
     
             $.ajax({
@@ -73,6 +73,7 @@
                 var htmlElement = $.parseHTML(response);
                 $(htmlElement).addClass("new_question nq-added");
                 $("#unselected-questions-cont").prepend(htmlElement);
+                ModeratorLibrary.initUI($(htmlElement));
                 // htmlElement.toggleClass( "new_question", 1000, "easeOutSine",  function(){
                 //     alert(1);
                 // });
@@ -87,7 +88,7 @@
             var flashInfo = trgParentCont.find(".flash-info");
     
             //flashInfo.html("Submiting...").show();
-            flashInfoaAimation(flashInfo, "Submiting");
+            flashInfoAimation(flashInfo, "Submiting");
             event.preventDefault();
     
             $.ajax({
@@ -136,13 +137,14 @@
             var trgParentCont = curElm.closest(".form-cont");
             trgParentCont.find("form.form-translation").submit();
         }
-        
-        ModeratorLibrary.initUI = function () {
-            $("form.edit_question.approve").submit(ModeratorLibrary.onSubmitApproved);
-            $("form.form-translation").submit(ModeratorLibrary.onSubmitTranslation);
-            $("button.edit").click(ModeratorLibrary.onBtnEdit);
-            $("button.cancel").click(ModeratorLibrary.questionBtnCancel);
-            $("button.save").click(ModeratorLibrary.onBtnSave);
+       
+        ModeratorLibrary.initUI = function (parentCont) {
+            if (!parentCont) parentCont = $('#moderator-monitor');
+            parentCont.find("form.edit_question.approve").submit(ModeratorLibrary.onSubmitApproved);
+            parentCont.find("form.form-translation").submit(ModeratorLibrary.onSubmitTranslation);
+            parentCont.find("button.edit").click(ModeratorLibrary.onBtnEdit);
+            parentCont.find("button.cancel").click(ModeratorLibrary.questionBtnCancel);
+            parentCont.find("button.save").click(ModeratorLibrary.onBtnSave);
         }
        
        
