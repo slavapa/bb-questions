@@ -1,9 +1,8 @@
 <script type="text/javascript">
     ModeratorLibrary = {};
-    
-    $( document ).ready(function() {
+
+    (function (ModeratorLibrary) {
         
-      
         function flashInfoaAimation(flashInfo, text){
             var html = '<div style="height: 21px;" class="inline-block" id="loading"><label>' + text + '</label><span>.</span><span>.</span><span>.</span></div>';
             flashInfo.html(html).show();
@@ -16,6 +15,39 @@
                     flashInfo.text('');
                 });
             });
+        }
+        
+        ModeratorLibrary.onSubmitApproved = function (event) {
+            var trgForm = $(event.target);
+            var trgParentCont = trgForm.closest(".form-cont");
+            var trgElm = trgForm.find("input.approve");
+            var trgBtn = trgForm.find("button.approve");
+            var flashInfo = trgParentCont.find(".flash-info");
+    
+            trgElm.click();
+            flashInfoaAimation(flashInfo, "Submiting");
+            event.preventDefault();
+    
+            $.ajax({
+                type: 'POST',
+                url: trgForm.attr('action'),
+                data: trgForm.serialize(),
+                dataType: 'json',
+                success: function (json) {
+                    if (json.approved) {
+                        trgBtn.addClass("btn-info approved").removeClass("btn-primary").text("UnApprove");
+                        flashInfoNotification(flashInfo, "Approved");
+                    }
+                    else {
+                        trgBtn.addClass("btn-primary").removeClass("btn-info approved").text("Approve");
+                        flashInfoNotification(flashInfo, "Un Approved");
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    writeError(flashInfo, jqXHR, textStatus, errorThrown);
+                }
+            })
+            return false;
         }
         		
         function writeError(flashInfo, jqXHR, textStatus, errorThrown){
@@ -33,74 +65,6 @@
             alert('An error occurred... Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information!');
         }
         
-        $( "form.edit_question.approve" ).submit(function( event ) {
-            var trgForm = $(this);
-            var trgParentCont = trgForm.closest(".form-cont");
-            var trgElm = trgForm.find("input.approve");
-            var trgBtn = trgForm.find("button.approve");
-            var flashInfo = trgParentCont.find(".flash-info");
-            
-            trgElm.click(); 
-            //flashInfo.text("Submiting...").show();
-            flashInfoaAimation(flashInfo, "Submiting");
-            event.preventDefault();
-            
-            $.ajax({
-                type: 'POST',
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                success: function(json) {
-                    if(json.approved) {
-                        trgBtn.addClass("btn-info approved").removeClass("btn-primary").text("UnApprove");
-                        flashInfoNotification(flashInfo, "Approved");
-                    } 
-                    else {
-                        trgBtn.addClass("btn-primary").removeClass("btn-info approved").text("Approve");
-                        flashInfoNotification(flashInfo, "Un Approved");
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    writeError(flashInfo, jqXHR, textStatus, errorThrown);
-                }
-            })
-            return false;
-        });
-        
-        $( "form.form-translation" ).submit(function( event ) {
-            var trgForm = $(this);
-            var trgParentCont = trgForm.closest(".form-cont");
-            var flashInfo = trgParentCont.find(".flash-info");
-            
-            //flashInfo.html("Submiting...").show();
-            flashInfoaAimation(flashInfo, "Submiting");
-            event.preventDefault();
-            
-            $.ajax({
-                type: 'POST',
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                success: function(json) {
-                    flashInfoNotification(flashInfo, "Saved");
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    writeError(flashInfo, jqXHR, textStatus, errorThrown);
-                }
-            })
-            return false;
-        });
-        
-        $("button.edit").click(ModeratorLibrary.onBtnEdit);
-       
-        $("button.cancel").click(ModeratorLibrary.questionBtnCancel);
-        
-        $("button.save").click(ModeratorLibrary.onBtnSave);
-       
-    });
-    
-
-    (function (ModeratorLibrary) {
         
         ModeratorLibrary.onMessage = function (data) {
             $.ajax({
@@ -117,7 +81,30 @@
             });
         };
         
-        
+        ModeratorLibrary.onSubmitTranslation = function (event) {
+            var trgForm = $(event.target);
+            var trgParentCont = trgForm.closest(".form-cont");
+            var flashInfo = trgParentCont.find(".flash-info");
+    
+            //flashInfo.html("Submiting...").show();
+            flashInfoaAimation(flashInfo, "Submiting");
+            event.preventDefault();
+    
+            $.ajax({
+                type: 'POST',
+                url: trgForm.attr('action'),
+                data: trgForm.serialize(),
+                dataType: 'json',
+                success: function (json) {
+                    flashInfoNotification(flashInfo, "Saved");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    writeError(flashInfo, jqXHR, textStatus, errorThrown);
+                }
+            })
+            return false;
+        }
+    
         ModeratorLibrary.onBtnEdit = function () {
             var curElm = $(this);
             var trgParentCont = curElm.closest(".form-cont");
@@ -149,8 +136,23 @@
             var trgParentCont = curElm.closest(".form-cont");
             trgParentCont.find("form.form-translation").submit();
         }
+        
+        ModeratorLibrary.initUI = function () {
+            $("form.edit_question.approve").submit(ModeratorLibrary.onSubmitApproved);
+            $("form.form-translation").submit(ModeratorLibrary.onSubmitTranslation);
+            $("button.edit").click(ModeratorLibrary.onBtnEdit);
+            $("button.cancel").click(ModeratorLibrary.questionBtnCancel);
+            $("button.save").click(ModeratorLibrary.onBtnSave);
+        }
        
        
     }(ModeratorLibrary = ModeratorLibrary || {}));
+    
+    
+    $( document ).ready(function() {
+        ModeratorLibrary.initUI();
+    });
+    
+    
 </script>
 
