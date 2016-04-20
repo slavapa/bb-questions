@@ -34,5 +34,49 @@ function reset_search_elements(){
         
        maimElm.find('input, textarea, button, select')
         .attr('disabled','disabled').addClass("readonly");
-    };    
+    };   
+    
+    
+    Common.disablePage = function(mainElementSelector) {
+        var maimElm;
+        if (!mainElementSelector){
+            maimElm =  $("body");
+        }
+        else{
+           maimElm =  $(mainElementSelector); 
+        }
+        
+       maimElm.find('input, textarea, button, select')
+        .attr('disabled','disabled').addClass("readonly");
+    };  
+    
+    Common.generateInterval = function(attempts) {
+        var maxInterval;
+        maxInterval = (Math.pow(2, attempts) - 1) * 1000;
+        if (maxInterval > 30 * 1000) {
+          maxInterval = 30 * 1000;
+        }
+        return Math.random() * maxInterval;
+    }; 
+    
+    Common.createWebsocket = function() {
+        var attempts = 1;
+        var scheme = "wss://";
+        var uri = scheme + window.document.location.host + '/';
+        var ws = new WebSocket(uri);
+        
+        ws.onopen = function() {
+          return attempts = 1;
+        };
+        
+        ws.onclose = function() {
+          return setTimeout(function() {
+            attempts++;
+            return Common.createWebsocket();
+          }, Common.generateInterval(attempts));
+        };
+        
+        return ws;
+    };   
+    
 }( window.Common = window.Common || {}));

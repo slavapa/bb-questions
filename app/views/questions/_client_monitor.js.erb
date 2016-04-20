@@ -1,0 +1,61 @@
+<script type="text/javascript">
+    ClientQuestionMonitorLibrary = {};
+
+    (function (ClientQuestionMonitorLibrary) {
+        
+        var _ws = null;
+         
+        ClientQuestionMonitorLibrary.onMessage = function (data) {
+            $('#chat-text').prepend('<div class=\'panel panel-default\'><div class=\'panel-heading\'>' + data.name + ' From ' + data.from + '</div><div class=\'panel-body\'>' + data.question + '</div></div>');
+                return $('#chat-text').stop().animate({
+                scrollTop: $('#chat-text')[0].scrollHeight
+            }, 800);
+        };
+        
+        ClientQuestionMonitorLibrary.onSubmitNewQuestion = function (event) {
+            var from, name, question;
+            event.preventDefault();
+            name = $('#name').val();
+            from = $('#from').val();
+            question = $('#question').val();
+            _ws.send(JSON.stringify({
+                name: name,
+                from: from,
+                question: question
+            }));
+            
+            $('#question').val('');
+            
+            return false;
+        }
+         
+        ClientQuestionMonitorLibrary.createWebsocket = function (parentCont) {
+            var ws = Socket.createWebsocket();
+        
+            ws.onmessage = function(message) {
+                var data;
+                data = JSON.parse(message.data);
+                
+                ClientQuestionMonitorLibrary.onMessage(data);
+            };
+            
+            _ws = ws;
+           
+            return ws;
+        }
+       
+        
+        ClientQuestionMonitorLibrary.initUI = function () {
+            $('#input-form').submit(ClientQuestionMonitorLibrary.onSubmitNewQuestion);
+        }
+       
+       
+    }(ClientQuestionMonitorLibrary = ClientQuestionMonitorLibrary || {}));
+    
+    $( document ).ready(function() {
+        ClientQuestionMonitorLibrary.createWebsocket(); 
+        ClientQuestionMonitorLibrary.initUI();
+    });
+
+</script>
+

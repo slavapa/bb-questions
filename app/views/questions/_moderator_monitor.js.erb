@@ -147,15 +147,28 @@
             parentCont.find("button.cancel").click(ModeratorLibrary.questionBtnCancel);
             parentCont.find("button.save").click(ModeratorLibrary.onBtnSave);
         }
+        
+        ModeratorLibrary.createWebsocket = function (parentCont) {
+            var ws = Socket.createWebsocket();
+        
+            ws.onmessage = function(message) {
+                var data;
+                data = JSON.parse(message.data);
+                ModeratorLibrary.onMessage(data);
+            };
+            
+            return ws;
+        }
+       
        
        
     }(ModeratorLibrary = ModeratorLibrary || {}));
     
     
     $( document ).ready(function() {
+        ModeratorLibrary.createWebsocket();
         ModeratorLibrary.initUI();
     });
-    
-    
+
 </script>
 
