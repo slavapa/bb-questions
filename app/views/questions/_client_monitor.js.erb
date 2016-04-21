@@ -43,11 +43,9 @@
            
             return ws;
         }
-       
         
-        ClientQuestionMonitorLibrary.initUI = function () {
-            // $('#input-form').submit(ClientQuestionMonitorLibrary.onSubmitNewQuestion);
-            
+        
+        function questionFormBindEvents(){ 
             $('#new_question-form')
                 .bind("ajax:success", function(data, status, xhr) {
                     alert('Your question was submitted successfully.');
@@ -56,6 +54,12 @@
             .bind("ajax:error", function(xhr, status, error) {
                alert('Failed to submit question. Please try again');
             });
+        }
+       
+        
+        ClientQuestionMonitorLibrary.initUI = function () {
+            // $('#input-form').submit(ClientQuestionMonitorLibrary.onSubmitNewQuestion);
+            questionFormBindEvents();
         }
        
        
