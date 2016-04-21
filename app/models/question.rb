@@ -4,6 +4,7 @@ class Question < ActiveRecord::Base
   end
   
   after_create :send_notify
+  after_update :send_notification_after_change
   
   validates :name, presence: true, length: { maximum: 255 }
   validates :question, presence: true
@@ -11,7 +12,8 @@ class Question < ActiveRecord::Base
     
    
   scope :selected,  -> { where(selected: [true]) }  
-  scope :unselected,  -> { where(selected: [false, nil]) }
+  scope :unselected,  -> { where(selected: [false, nil]) } 
+  scope :approved,  -> { where(approved: [true]) }  
   
   private
   def send_notify
@@ -19,6 +21,13 @@ class Question < ActiveRecord::Base
     self.class.connection.execute %Q(NOTIFY #{AsyncEvents::CHANNEL}, '#{to_json.gsub("'", "''")}')
     true
   end
+  
+  def send_notification_after_change
+    # if (self.approved? && self.approved == true)
+    self.class.connection.execute %Q(NOTIFY #{AsyncEvents::CHANNEL}, '#{to_json.gsub("'", "''")}') 
+    # end
+  end
+
   
   def translate
     self.translation = question if attribute_present?("question")

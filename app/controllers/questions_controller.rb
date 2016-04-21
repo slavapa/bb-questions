@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
   def client_monitor
     @new_question = Question.new
     @new_question.ip = request.remote_ip
-    @questions = Question.all.order(id: :desc)
+    @questions = Question.approved.all.order(id: :desc)
   end
 
   # GET /questions

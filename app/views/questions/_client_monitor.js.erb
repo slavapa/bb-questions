@@ -6,10 +6,19 @@
         var _ws = null;
          
         ClientQuestionMonitorLibrary.onMessage = function (data) {
-            $('#chat-text').prepend('<div class=\'panel panel-default\'><div class=\'panel-heading\'>' + data.name + ' From ' + data.from + '</div><div class=\'panel-body\'>' + data.question + '</div></div>');
-                return $('#chat-text').stop().animate({
-                scrollTop: $('#chat-text')[0].scrollHeight
-            }, 800);
+            if ((/true/i).test(data.approved)){
+                if ($("#question-cont-" + data.id).length == 0){
+                    $('#questions-inner-cont').prepend("<div id='question-cont-" + data.id + "' class='panel panel-default'><div class='panel-heading'>" + data.name + " From " + data.from + "</div><div class='panel-body'>" + data.question + "</div></div>");
+                        return $('#chat-text').stop().animate({
+                        scrollTop: $('#chat-text')[0].scrollHeight
+                    }, 800);
+                }
+            }
+            else{
+                if (data.id){
+                    $("#question-cont-" + data.id).remove();
+                }
+            }
         };
         
         // ClientQuestionMonitorLibrary.onSubmitNewQuestion = function (event) {

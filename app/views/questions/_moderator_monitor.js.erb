@@ -67,20 +67,22 @@
         
         
         ModeratorLibrary.onMessage = function (data) {
-            $.ajax({
-                url: "/questions/" + data.id + "/moderator_question"
-            }).done(function(response) {
-                var htmlElement = $.parseHTML(response);
-                var newQuestion = $(htmlElement);
-                newQuestion.addClass("nq-added");
-                $("#unselected-questions-cont").prepend(newQuestion);
-                ModeratorLibrary.initUI($(newQuestion));
-                newQuestion.toggleClass( "new_question", 1000, "easeOutSine",  function(){
-                    newQuestion.toggleClass( "new_question", 3000, "easeOutSine");
+            if ($("#form-cont-" + data.id).length == 0){
+                $.ajax({
+                    url: "/questions/" + data.id + "/moderator_question"
+                }).done(function(response) {
+                    var htmlElement = $.parseHTML(response);
+                    var newQuestion = $(htmlElement);
+                    newQuestion.addClass("nq-added");
+                    $("#unselected-questions-cont").prepend(newQuestion);
+                    ModeratorLibrary.initUI($(newQuestion));
+                    newQuestion.toggleClass( "new_question", 1000, "easeOutSine",  function(){
+                        newQuestion.toggleClass( "new_question", 3000, "easeOutSine");
+                    });
+                    
+                    
                 });
-                
-                
-            });
+            }
         };
         
         ModeratorLibrary.onSubmitTranslation = function (event) {

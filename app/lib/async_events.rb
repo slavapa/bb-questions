@@ -31,10 +31,10 @@ class AsyncEvents
     end
 
     ws.on :message do |event|
-      p [:message, event.data]
-      data = JSON.parse event.data
-      message = Question.create name: data['name'], from: data['from'], question: data['question']
-      p data
+      # p [:message, event.data]
+      # data = JSON.parse event.data
+      # message = Question.create name: data['name'], from: data['from'], question: data['question']
+      # p data
     end
 
     ws.on :close do |event|
