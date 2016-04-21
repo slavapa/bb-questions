@@ -12,22 +12,22 @@
             }, 800);
         };
         
-        ClientQuestionMonitorLibrary.onSubmitNewQuestion = function (event) {
-            var from, name, question;
-            event.preventDefault();
-            name = $('#name').val();
-            from = $('#from').val();
-            question = $('#question').val();
-            _ws.send(JSON.stringify({
-                name: name,
-                from: from,
-                question: question
-            }));
+        // ClientQuestionMonitorLibrary.onSubmitNewQuestion = function (event) {
+        //     var from, name, question;
+        //     event.preventDefault();
+        //     name = $('#name').val();
+        //     from = $('#from').val();
+        //     question = $('#question').val();
+        //     _ws.send(JSON.stringify({
+        //         name: name,
+        //         from: from,
+        //         question: question
+        //     }));
             
-            $('#question').val('');
+        //     $('#question').val('');
             
-            return false;
-        }
+        //     return false;
+        // }
          
         ClientQuestionMonitorLibrary.createWebsocket = function (parentCont) {
             var ws = Socket.createWebsocket();
@@ -46,7 +46,16 @@
        
         
         ClientQuestionMonitorLibrary.initUI = function () {
-            $('#input-form').submit(ClientQuestionMonitorLibrary.onSubmitNewQuestion);
+            // $('#input-form').submit(ClientQuestionMonitorLibrary.onSubmitNewQuestion);
+            
+            $('#new_question-form')
+                .bind("ajax:success", function(data, status, xhr) {
+                    alert('Your question was submitted successfully.');
+                    $('#question_question').val('');
+            })
+            .bind("ajax:error", function(xhr, status, error) {
+               alert('Failed to submit question. Please try again');
+            });
         }
        
        

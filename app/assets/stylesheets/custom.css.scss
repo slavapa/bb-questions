@@ -759,6 +759,10 @@ button.approved{
     background-color: #E5E6EA;
 }
 
-.new_question{
+.moderator-monitor .new_question{
   background-color: #1FFF57;
+}
+
+.client-monitor textarea.form-control{
+  width:495px;
 }

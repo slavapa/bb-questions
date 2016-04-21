@@ -59,24 +59,4 @@ function reset_search_elements(){
         return Math.random() * maxInterval;
     }; 
     
-    Common.createWebsocket = function() {
-        var attempts = 1;
-        var scheme = "wss://";
-        var uri = scheme + window.document.location.host + '/';
-        var ws = new WebSocket(uri);
-        
-        ws.onopen = function() {
-          return attempts = 1;
-        };
-        
-        ws.onclose = function() {
-          return setTimeout(function() {
-            attempts++;
-            return Common.createWebsocket();
-          }, Common.generateInterval(attempts));
-        };
-        
-        return ws;
-    };   
-    
 }( window.Common = window.Common || {}));
