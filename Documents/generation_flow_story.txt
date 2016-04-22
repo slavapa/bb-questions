@@ -3,3 +3,11 @@ rails generate controller Users new
 rails generate scaffold User name:string family_name:string email:string:index:unique password_digest:string remember_digest:string
 rails generate controller Sessions new
 rails generate scaffold Question name:string from:string ip:string banned:boolean selected:boolean approved:boolean sequence:integer question:text translation:text reformed:text
+rails generate scaffold AppSetupType id:integer:index name:string:unique description:string
+rails generate scaffold Language name:string:index code:string:index is_rtl:boolean
+rails destroy scaffold Language
+
+rails destroy scaffold ApplicationSetup
+rails g migration DropApplicationSetups
+rails d migration DropApplicationSetups
+rails generate scaffold ApplicationSetup app_setup_type:references language:references code_id:string description:string str_value:string

@@ -21,7 +21,8 @@ class Question < ActiveRecord::Base
   end
   
   def self.get_trgt_trans_dir
-    "rtl"
+    target_trans_lang = ApplicationSetup.target_trans_lang()
+    target_trans_lang.is_rtl?? "rtl": "ltr"
   end
   
   

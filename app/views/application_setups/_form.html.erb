@@ -1,0 +1,37 @@
+<%= form_for(@application_setup) do |f| %>
+  <% if @application_setup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@application_setup.errors.count, "error") %> prohibited this application_setup from being saved:</h2>
+
+      <ul>
+      <% @application_setup.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :app_setup_type_id %><br>
+    <%= f.text_field :app_setup_type_id %>
+  </div>
+  <div class="field">
+    <%= f.label :language_id %><br>
+    <%= f.text_field :language_id %>
+  </div>
+  <div class="field">
+    <%= f.label :code_id %><br>
+    <%= f.text_field :code_id %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :str_value %><br>
+    <%= f.text_field :str_value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

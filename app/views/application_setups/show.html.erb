@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>App setup type:</strong>
+  <%= @application_setup.app_setup_type %>
+</p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @application_setup.language %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @application_setup.code_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @application_setup.description %>
+</p>
+
+<p>
+  <strong>Str value:</strong>
+  <%= @application_setup.str_value %>
+</p>
+
+<%= link_to 'Edit', edit_application_setup_path(@application_setup) %> |
+<%= link_to 'Back', application_setups_path %>
