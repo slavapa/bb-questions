@@ -15,6 +15,16 @@ class Question < ActiveRecord::Base
   scope :unselected,  -> { where(selected: [false, nil]) } 
   scope :approved,  -> { where(approved: [true]) }  
   
+  
+  def get_trans_hide_show_class
+    translation.blank?? "hide": "show"
+  end
+  
+  def self.get_trgt_trans_dir
+    "rtl"
+  end
+  
+  
   private
   def send_notify
     # Escape single quoted strings by inserting 2 of them
@@ -32,4 +42,6 @@ class Question < ActiveRecord::Base
   def translate
     self.translation = question if attribute_present?("question")
   end
+  
+  
 end

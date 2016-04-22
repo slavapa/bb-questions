@@ -47,22 +47,20 @@
         	
         	<div class="row">
         		<div class="col-md-12">
-        			<div class="original-question"><%= question.question %></div>
+        			<div dir="auto" class="original-question"><%= question.question %></div>
+        		</div>
+        	</div>
+        
+        	<div class="row">
+        		<div class="col-md-12">
+        		  <div dir="auto" class="org-translation <%= question.get_trans_hide_show_class() %>"><%= question.translation %></div>
         		</div>
         	</div>
         	
-        	<% unless question.translation.blank? %>
-          	<div class="row">
-          		<div class="col-md-12">
-          		  <div class="org-translation"><%= question.translation %></div>
-          		</div>
-          	</div>
-        	<% end %>
-        	
         	<div class="row">
         		<div class="col-md-12">
-        		  <%= form_for(question, remote: true, format: :json, html: {:class => "edit_question form-translation"}) do |f| %>
-        		      <%= f.text_area :translation, class:"hide form-control question-translation", 
+        		  <%= form_for(question, remote: true, format: :json, html: {:class => "edit_question form-translation rtl"}) do |f| %>
+        		      <%= f.text_area :translation, class:"hide form-control question-translation #{Question.get_trgt_trans_dir()}", 
         		      rows: "3", id: "translation-#{question.id}"  %>
         		  <% end %>				
         		</div>

@@ -101,6 +101,7 @@
                 dataType: 'json',
                 success: function (json) {
                     flashInfoNotification(flashInfo, "Saved");
+                    trgParentCont.find(".org-translation").text(trgParentCont.find(".question-translation").val()).removeClass("hide");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     writeError(flashInfo, jqXHR, textStatus, errorThrown);
