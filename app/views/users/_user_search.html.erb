@@ -1,0 +1,20 @@
+<%= form_for search, as: :f, method: :get, url: users_path, html: {id: 'search-form', class:'search-form'} do |search_form| %>
+  <% field_set_tag do %>
+  	<span class='search_span'>
+	  <%= search_form.label :name, t(:name) %>
+	  <%= search_form.search_field :name, class:'form-control search_field' %>  		
+  	</span>
+  	
+  	<span class='search_span'> 	  
+  	  <%= search_form.label :family_name, t('activerecord.attributes.user.family_name') %>
+	  <%= search_form.search_field :family_name, class:'form-control search_field' %> 		
+  	</span>
+  	
+  	<span class='search_span'>  												
+	  	<%= search_form.label :sort_params_for, t(:sort_by) %>
+	  	<%= search_form.select :sort, search.sort_params_arr,  {include_blank: false},
+	  		{ class: 'form-control search_field long_search_select' } %>		
+  	</span>
+  
+  <% end %>
+<% end %>

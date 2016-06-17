@@ -1,6 +1,24 @@
-<h1>Editing User</h1>
+
+<%= render partial: 'shared/header_edit', locals:{ title: t('.editing'), 
+	new_path: new_user_path, cur_item: @user,
+	index_path_name: t('users.index.list'), index_path: users_path
+}%>
+
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+	
+<div class="row">
+	<div class="col-md-1">	
+		<% if @user.email.present?%>
+			<%= gravatar_for @user %>
+		<% end %>
+	</div>
+	<div class="col-md-2">
+		<a href="http://gravatar.com/emails">change</a>
+	</div>
+	<div class="col-md-9">
+	</div>
+</div>
+
+<%= render 'edit_js' %>

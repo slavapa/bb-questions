@@ -1,0 +1,30 @@
+<% provide(:title, "Question Monitor") %>
+<div class="container client-monitor">
+  <%= form_for(@new_question, remote: true, html: {id: 'new_question-form', class:'new_question form-inline'}) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+  
+    <div class="form-group">
+      <input class="form-control" type="text" name="question[name]" id="question_name" laceholder="Name" autofocus>
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="text" name="question[from]" id="question_from" placeholder="From" autofocus>
+    </div>
+    <button class="btn btn-primary" type="submit">Send</button>
+    <div class="form-group" style="display:block;">
+      <textarea class="form-control" name="question[question]" id="question_question" placeholder="Enter Question text here!" autofocus></textarea>
+    </div>
+  <% end %>
+ 
+  <div class="page-header">
+    <h1>Question</h1>
+  </div>
+  <div id="questions-inner-cont">
+    <%- @questions.each do |question| %>
+    	<%= render partial: "client_question_form", 
+  		  locals: {question: question} %>
+    <%- end %>
+  </div>
+</div>
+
+
+<%= render(:partial => 'client_monitor.js', :formats => [:js] ) %>

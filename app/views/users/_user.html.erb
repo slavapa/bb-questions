@@ -1,0 +1,16 @@
+<tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+	<td class='td_left' style='width: 32px'>
+		<% if user.email.present?%>
+			<%= gravatar_for user, size: 32 %>
+		<% end %>				
+	</td>
+	<td class='td_holder medium-size-td  module-link'>
+		<%= link_to user.name, edit_user_path(user) %>		
+	</td>
+	<td class='td_holder medium-size-td'>
+		<%= user.family_name %>		
+	</td>
+	<td class='td_holder mm-size-td'>
+		<%= user.email %>		
+	</td>
+</tr>

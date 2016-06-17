@@ -1,0 +1,17 @@
+<% provide(:title, title) %>
+<h3 class="module-header index">
+	<div class="header-title">
+		<span><%= title %></span>
+	</div>	
+	
+	<% if (admin_user?  || ((defined? isForceNew) && isForceNew == true)) && (defined? path) %>
+		<%= link_to t(:new), path, class: "link_header btn btn-default btn-small active", 
+					id: "new_link_header" %>
+	<% end %>
+	
+	<% if (defined? search) %>
+		<%= render partial: 'shared/search_header', 
+			locals:{ search: search} %>
+	<% end %>
+	
+</h1>

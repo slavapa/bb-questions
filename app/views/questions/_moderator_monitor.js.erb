@@ -1,0 +1,177 @@
+<script type="text/javascript">
+    ModeratorLibrary = {};
+
+    (function (ModeratorLibrary) {
+        
+        function flashInfoAimation(flashInfo, text){
+            var html = '<div style="height: 21px;" class="inline-block" id="loading"><label>' + text + '</label><span>.</span><span>.</span><span>.</span></div>';
+            flashInfo.html(html).show();
+        }
+        
+        function flashInfoNotification(flashInfo, text){
+            flashInfo.html(text).show();
+            flashInfo.delay(500).fadeIn('normal', function() {
+                flashInfo.delay(2500).fadeOut(function(){
+                    flashInfo.text('');
+                });
+            });
+        }
+        
+        ModeratorLibrary.onSubmitApproved = function (event) {
+            var trgForm = $(event.target);
+            var trgParentCont = trgForm.closest(".form-cont");
+            var trgElm = trgForm.find("input.approve");
+            var trgBtn = trgForm.find("button.approve");
+            var flashInfo = trgParentCont.find(".flash-info");
+    
+            trgElm.click();
+            flashInfoAimation(flashInfo, "Submiting");
+            event.preventDefault();
+    
+            $.ajax({
+                type: 'POST',
+                url: trgForm.attr('action'),
+                data: trgForm.serialize(),
+                dataType: 'json',
+                success: function (json) {
+                    if (json.approved) {
+                        trgBtn.addClass("btn-info approved").removeClass("btn-primary").text("UnApprove");
+                        flashInfoNotification(flashInfo, "Approved");
+                    }
+                    else {
+                        trgBtn.addClass("btn-primary").removeClass("btn-info approved").text("Approve");
+                        flashInfoNotification(flashInfo, "Un Approved");
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    writeError(flashInfo, jqXHR, textStatus, errorThrown);
+                }
+            })
+            return false;
+        }
+        		
+        function writeError(flashInfo, jqXHR, textStatus, errorThrown){
+            var shortMessage = jqXHR.status + ' error Thrown: ' + errorThrown;
+            
+            if (flashInfo) flashInfo.html(shortMessage).prop('title', shortMessage);
+            
+            console.log('jqXHR:');
+            console.log(jqXHR);
+            console.log('textStatus:');
+            console.log(textStatus);
+            console.log('errorThrown:');
+            console.log(errorThrown);
+            
+            alert('An error occurred... Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information!');
+        }
+        
+        
+        ModeratorLibrary.onMessage = function (data) {
+            if ($("#form-cont-" + data.id).length == 0){
+                $.ajax({
+                    url: "/questions/" + data.id + "/moderator_question"
+                }).done(function(response) {
+                    var htmlElement = $.parseHTML(response);
+                    var newQuestion = $(htmlElement);
+                    newQuestion.addClass("nq-added");
+                    $("#unselected-questions-cont").prepend(newQuestion);
+                    ModeratorLibrary.initUI($(newQuestion));
+                    newQuestion.toggleClass( "new_question", 1000, "easeOutSine",  function(){
+                        newQuestion.toggleClass( "new_question", 3000, "easeOutSine");
+                    });
+                    
+                    
+                });
+            }
+        };
+        
+        ModeratorLibrary.onSubmitTranslation = function (event) {
+            var trgForm = $(event.target);
+            var trgParentCont = trgForm.closest(".form-cont");
+            var flashInfo = trgParentCont.find(".flash-info");
+    
+            //flashInfo.html("Submiting...").show();
+            flashInfoAimation(flashInfo, "Submiting");
+            event.preventDefault();
+    
+            $.ajax({
+                type: 'POST',
+                url: trgForm.attr('action'),
+                data: trgForm.serialize(),
+                dataType: 'json',
+                success: function (json) {
+                    flashInfoNotification(flashInfo, "Saved");
+                    trgParentCont.find(".org-translation").text(trgParentCont.find(".question-translation").val()).removeClass("hide");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    writeError(flashInfo, jqXHR, textStatus, errorThrown);
+                }
+            })
+            return false;
+        }
+    
+        ModeratorLibrary.onBtnEdit = function () {
+            var curElm = $(this);
+            var trgParentCont = curElm.closest(".form-cont");
+            var questionId = trgParentCont.data("question-id");
+            var trgElm = trgParentCont.find(".question-translation");
+            trgElm.removeClass("hide").show();
+    
+            if (!trgElm.text().length) {
+                trgElm.text(trgParentCont.find(".original-question").text());
+            }
+    
+            trgParentCont.find(".btn.save").removeClass("hide").show();
+            trgParentCont.find(".btn.cancel").removeClass("hide").show();
+            curElm.hide();
+        }
+
+        
+        ModeratorLibrary.questionBtnCancel = function () {
+            var curElm = $(this);
+            var trgParentCont = curElm.closest(".form-cont");
+            trgParentCont.find(".btn.edit").show();
+            trgParentCont.find(".btn.save").hide();
+            trgParentCont.find(".btn.cancel").hide();
+            trgParentCont.find(".question-translation").hide();
+        }
+        
+        ModeratorLibrary.onBtnSave = function () {
+            var curElm = $(this);
+            var trgParentCont = curElm.closest(".form-cont");
+            trgParentCont.find("form.form-translation").submit();
+        }
+       
+        ModeratorLibrary.initUI = function (parentCont) {
+            if (!parentCont) parentCont = $('#moderator-monitor');
+            parentCont.find("form.edit_question.approve").submit(ModeratorLibrary.onSubmitApproved);
+            parentCont.find("form.form-translation").submit(ModeratorLibrary.onSubmitTranslation);
+            parentCont.find("button.edit").click(ModeratorLibrary.onBtnEdit);
+            parentCont.find("button.cancel").click(ModeratorLibrary.questionBtnCancel);
+            parentCont.find("button.save").click(ModeratorLibrary.onBtnSave);
+        }
+        
+        ModeratorLibrary.createWebsocket = function (parentCont) {
+            var ws = Socket.createWebsocket();
+        
+            ws.onmessage = function(message) {
+                var data;
+                data = JSON.parse(message.data);
+                ModeratorLibrary.onMessage(data);
+            };
+            
+            return ws;
+        }
+       
+       
+       
+    }(ModeratorLibrary = ModeratorLibrary || {}));
+    
+    
+    $( document ).ready(function() {
+        ModeratorLibrary.createWebsocket();
+        ModeratorLibrary.initUI();
+    });
+
+</script>
+

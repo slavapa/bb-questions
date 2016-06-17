@@ -1,35 +1,28 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'shared/header_index', 
+	locals:{ title: t('.list'),  path: new_user_path, search: @search } %>
 
-<h1>Listing Users</h1>
+<%= render partial: 'user_search', 
+	locals:{ search: @search} %>	
 
-<table>
+<div class="paginate-cont-top">
+  <%= will_paginate %>
+</div>	
+
+<table class='table-bordered table table-hover table-index'>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Family name</th>
-      <th>Email</th>
-      <th>Password digest</th>
-      <th>Remember digest</th>
-      <th colspan="3"></th>
+      <th class='td_left '></th>
+      <th class='td_holder medium-size-td  module-link'><%=  t(:name) %></th>
+      <th class='td_holder medium-size-td'><%= t('activerecord.attributes.user.family_name')%></th>
+      <th class='td_holder mm-size-td'><%=  t('activerecord.attributes.user.email') %></th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.family_name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.password_digest %></td>
-        <td><%= user.remember_digest %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody  class="tbody_events">
+  	<%= render @users %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New User', new_user_path %>
+<div class="paginate-cont-bottom">
+  <%= will_paginate %>
+</div>

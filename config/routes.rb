@@ -1,6 +1,20 @@
 Rails.application.routes.draw do
+  resources :application_setups
+  resources :languages
+  resources :app_setup_types
+  resources :questions do
+    collection do
+      get 'moderator_monitor'
+      get 'client_monitor'
+    end
+    
+    member do
+      get 'moderator_question'
+    end
+  end
+  
   resources :users
-  root 'home#default'
+  root 'questions#client_monitor'
   
   get 'home/default'
   get 'home/about'

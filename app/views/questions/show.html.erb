@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @question.name %>
+</p>
+
+<p>
+  <strong>From:</strong>
+  <%= @question.from %>
+</p>
+
+<p>
+  <strong>Ip:</strong>
+  <%= @question.ip %>
+</p>
+
+<p>
+  <strong>Banned:</strong>
+  <%= @question.banned %>
+</p>
+
+<p>
+  <strong>Selected:</strong>
+  <%= @question.selected %>
+</p>
+
+<p>
+  <strong>Approved:</strong>
+  <%= @question.approved %>
+</p>
+
+<p>
+  <strong>Sequence:</strong>
+  <%= @question.sequence %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @question.question %>
+</p>
+
+<p>
+  <strong>Translation:</strong>
+  <%= @question.translation %>
+</p>
+
+<p>
+  <strong>Reformed:</strong>
+  <%= @question.reformed %>
+</p>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

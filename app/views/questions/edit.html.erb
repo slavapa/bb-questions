@@ -1,0 +1,9 @@
+<%= render partial: 'shared/header_edit', locals:{ title: t('.editing'), 
+	new_path: new_question_path, cur_item: @question,
+	index_path_name: t('questions.index.list'), index_path: questions_path, isForceNew: true
+}%>
+
+
+<%= render 'form' %>
+
+

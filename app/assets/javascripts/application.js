@@ -16,3 +16,47 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+function reset_search_elements(){
+	$('.search_field').val('');
+}
+
+(function( Common ) {
+    //Public Method
+    Common.disablePage = function(mainElementSelector) {
+        var maimElm;
+        if (!mainElementSelector){
+            maimElm =  $("body");
+        }
+        else{
+           maimElm =  $(mainElementSelector); 
+        }
+        
+       maimElm.find('input, textarea, button, select')
+        .attr('disabled','disabled').addClass("readonly");
+    };   
+    
+    
+    Common.disablePage = function(mainElementSelector) {
+        var maimElm;
+        if (!mainElementSelector){
+            maimElm =  $("body");
+        }
+        else{
+           maimElm =  $(mainElementSelector); 
+        }
+        
+       maimElm.find('input, textarea, button, select')
+        .attr('disabled','disabled').addClass("readonly");
+    };  
+    
+    Common.generateInterval = function(attempts) {
+        var maxInterval;
+        maxInterval = (Math.pow(2, attempts) - 1) * 1000;
+        if (maxInterval > 30 * 1000) {
+          maxInterval = 30 * 1000;
+        }
+        return Math.random() * maxInterval;
+    }; 
+    
+}( window.Common = window.Common || {}));

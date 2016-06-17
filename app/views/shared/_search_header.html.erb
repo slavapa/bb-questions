@@ -1,0 +1,26 @@
+<% if (defined? search) %>
+	<%= link_to t(:clear), '#', class:"link_header btn btn-default btn-small active", 
+			id: "clear_link_header"  %>
+			
+	<%= link_to t(:search), '#', class:"link_header btn btn-default btn-small active", 
+			id: "search_link_header"  %> 
+			
+	<span class='search_result'><%= "#{t(:tot_rows)}:"%><span>&nbsp;</span><%="#{search.count}"%></span>
+	<span class='search_result'>
+		<%= "#{t(:page)}:"%><span>&nbsp;</span><% if search.page > 0 %><%= search.page %><% else %> 1 <% end %>				
+	</span>	
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+		    $('#clear_link_header').click(function(){
+		        reset_search_elements();
+		        return false;
+		    });
+		    		    
+		    $('#search_link_header').click(function(){
+		        $('#search-form').submit();
+		        return false;
+		    });
+		});
+	</script>	
+<% end %>

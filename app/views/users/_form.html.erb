@@ -1,37 +1,40 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<%= form_for(@user, :html => {:autocomplete => "off"}) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :family_name %><br>
-    <%= f.text_field :family_name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password_digest %><br>
-    <%= f.text_field :password_digest %>
-  </div>
-  <div class="field">
-    <%= f.label :remember_digest %><br>
-    <%= f.text_field :remember_digest %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+	<div class="row">
+		<div class="col-md-3">
+			<%= field_set_tag do %>					
+		  	<%= f.label :name, t(:name) %>
+		  	<%= f.text_field :name, class:'form-control' %>
+		  	
+		  	<%= f.label :family_name %>
+		  	<%= f.text_field :family_name, class:'form-control' %>	
+		  	
+		  	<%= f.label :email %>
+		  	<%= f.text_field :email, :autocomplete => :off, class:'form-control' %>
+		
+		  
+			<% end %>
+		</div>
+		
+		<div class="col-md-3">
+			<%= field_set_tag do %>	
+		  	<%= f.label :password %>
+		  	<%= f.password_field :password, :autocomplete => :off, value:'', class:'form-control' %>
+		
+		  	<%= f.label :password_confirmation %>
+		  	<%= f.password_field :password_confirmation, class:'form-control' %>
+		  	
+		  	<% if admin_user? %>
+		      <%= f.label :admin do %>
+		        <%= f.check_box :admin %>
+		        <span class='label_checkbox'><%= t('activerecord.attributes.user.admin') %></span>
+		      <% end %>
+		  	<% end %>
+			<% end %>
+		</div>
+	</div>
+	
+  <%= f.submit "Save changes", class: "btn btn-primary display_none",
+  		id:'btn_submit' %>
 <% end %>

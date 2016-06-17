@@ -1,0 +1,27 @@
+<tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+	<td class='td_left td-img-holder ss-size-td'>
+		<% if question.approved?%>
+			<%= image_tag("vicon.gif") %>
+		<% end %>				
+	</td>		
+	<td class='td-img-holder ss-size-td'>
+		<% if question.banned?%>
+			<%= image_tag("vicon.gif") %>
+		<% end %>				
+	</td>
+	<td class='td_holder medium-size-td  module-link'>
+		<%= link_to question.name, edit_question_path(question) %>		
+	</td>
+	<td class='td_holder medium-size-td'>
+		<%= question.from %>		
+	</td>
+	<td class='td_holder medium-size-td'>
+		<%= question.ip %>		
+	</td>
+	<td class='td_holder long-size-td'>
+		<%= question.question %>		
+	</td>
+	<td class='td_holder long-size-td'>
+		<%= question.translation %>		
+	</td>
+</tr>

@@ -265,3 +265,132 @@ ru:
   contact_us: "Пишите нам"
   log_id: "Войти"
   footer_info: "Новый интернет-проект - Мы строим вместе"
+  house_name: "ББ Вопросы"  
+  help: "Помощь"
+  modules: "Modules"
+  actions: "Действия"
+  people_list: "Список Людей"
+  person_new: 'Человек (новый)'
+  account: 'Счет'
+  sign_out: 'Выйти'
+  search: 'Поиск'
+  clear: 'Очистить'
+  new: 'Новый'
+  name: 'Имя'
+  show: 'Показать'
+  edit: 'Изменить'
+  delete: 'Удалить'
+  back: 'Вернуться'
+  save: 'Сохранить'
+  add: 'Добавить'
+  remove: 'Удалить'
+  update: 'Сохранить'
+  open: 'Открыть'
+  list: 'Список'
+  will_paginate:
+    previous_label: 'Предыдущий'
+    next_label: 'Следующий'
+  description: 'Описание'
+  confirm: 'Вы уверены?' 
+  item_updated: '%{name} был успешно обновлен.' 
+  item_created: '%{name} был успешно создан.'
+  item_deleted: "%{name} был успешно удален." 
+  invalid_email_password: 'Неправильное сочетание электронной почты/пароля.' 
+  not_authorized: 'Вы не авторизованы для выполнения этого действия.'  
+  cannot_delete_event_type: "%{name} не был удален, так это уже используется"
+  presence: "%{name} является обязательным"
+  existence: "%{name} не существует" 
+  male: 'Мужской'
+  female: 'Женский' 
+  single: 'Холост/'
+  married: 'Женат/замужем'
+  divorced: 'Разведенный'
+  widower: 'вдовец/вдова'
+  private: 'Частный' 
+  commercial: 'Коммерческий' 
+  weak: 'Слабый'
+  usual: 'Обычный'
+  advanced: 'Продвинутый' 
+  lang_code_val: "является недопустимым. Допустимые значения должны быть на английском языке нижний регистр"
+  tot_rows: 'Всего строк'
+  page: 'Страница'
+  sort_by: 'Сортировка по'
+  a-z: 'А-я'
+  z-a: 'я-А'
+  date_before: 'Дата Перед'
+  date_after: 'Дата После'
+  asc: 'Возр.'
+  desc: 'Убыв.'
+  "yes": 'Да'
+  "no": 'Нет'
+  up: 'Вверх'
+  down: 'Вниз'
+  main: 'Главная'
+  profile: 'Профиль'
+  general: 'Общие'
+  daily: 'Ежедневно'
+  weekly: 'Еженедельно'
+  monthly: 'Ежемесячно'
+  annually: 'Ежегодно'
+  validates_inclusion: "%{value} не действителен. Допустимые значения: %{valid_values}"
+  type: 'Тип'
+  download_as_excel: 'Скачать Excel'
+  report: 'Отчет'
+  create: 'Создать'
+  date_start: 'Дата старта'
+  log_id: "Войти"
+  please_sign_in: "Пожалуйста, войти в систему."
+  id: 'ID'
+  
+  
+ #START:Active Records   
+  activerecord:
+    models:
+      user: 'Пользователь'
+    attributes:
+      person:
+        family_name: 'Фамилия'
+        email: 'E-mail'
+        email_2: 'E-mail 2'
+        password: 'Пароль'
+        password_confirmation: 'Подтвердить пароль'
+        admin: 'Админ'
+      question:
+        from: 'Откуда'
+        ip: 'IP'
+        banned: 'запрещенный'
+        selected: 'Выбранный'
+        approved: 'Одобренный'
+        sequence: 'Порядковый'
+        question: 'Вопрос'
+        translation: 'Перевод'
+        reformed: 'Преобразованный'
+#END:Active Records
+
+
+
+#START:Users
+  users:
+    name: 'Пользователи'
+    new:
+      new: 'Новый Пользователь'
+    index:
+      list: 'Список Пользователей'
+    edit:
+      editing: 'Изменение Профиля Пользователя'
+    searching:
+      name: 'Имя Пользователя'
+      fam_name: 'Фамилия'
+#END:Users
+
+
+#START:Questions
+  questions:
+    name: 'Вопросы'
+    new:
+      new: 'Новый Вопрос'
+    index:
+      list: 'Список Вопросов'
+    edit:
+      editing: 'Изменение Вопроса'
+#END:Questions

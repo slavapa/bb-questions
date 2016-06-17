@@ -1,0 +1,31 @@
+<%= render partial: 'shared/header_index', 
+	locals:{ title: t('.list'),  path: new_question_path, search: @search, isForceNew: true } %>
+
+<%= render partial: 'question_search', locals:{ search: @search} %>	
+
+<div class="paginate-cont-top">
+  <%= will_paginate %>
+</div>		
+
+<table class='table-bordered table table-hover table-index'>
+  <thead>
+    <tr>
+      <th class='td_left ss-size-td'><%= t('activerecord.attributes.question.approved')%></th>
+      <th class='td_holder ss-size-td'><%=  t('activerecord.attributes.question.banned') %></th>
+      <th class='td_holder medium-size-td  module-link'><%=  t(:name) %></th>
+      <th class='td_holder medium-size-td'><%= t('activerecord.attributes.question.from')%></th>
+      <th class='td_holder mm-size-td'><%=  t('activerecord.attributes.question.ip') %></th>
+      <th class='td_holder long-size-td'><%=  t('activerecord.attributes.question.question') %></th>
+      <th class='td_holder long-size-td'><%=  "#{t('activerecord.attributes.question.translation')}/#{t('activerecord.attributes.question.reformed')}"  %></th>
+    </tr>
+  </thead>
+
+  <tbody  class="tbody_events">
+  	<%= render @questions %>
+  </tbody>
+</table>
+
+
+<div class="paginate-cont-top">
+  <%= will_paginate %>
+</div>	
